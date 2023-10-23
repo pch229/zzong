@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/09.Test/Jin/JIn_TreeTest.unity
+    guid: 638b1dd0b039273439350e0f88f35bd0
+  - enabled: 0
+    path: Assets/09.Test/Jin/3_Settlement_Jin.unity
+    guid: d8a413e4d86e5d144978b16e6887bf5f
+  - enabled: 1
+    path: Assets/WoongjinAssets_3D/StoneAge/Scenes/1_Cave.unity
+    guid: 5ede1a1d9fc75f84689a80354cac43eb
+  - enabled: 1
+    path: Assets/WoongjinAssets_3D/StoneAge/Scenes/2_CrackInRocks.unity
+    guid: fbe8ebd2152321240a65bad09769d25a
+  - enabled: 1
+    path: Assets/WoongjinAssets_3D/StoneAge/Scenes/3_Settlement.unity
+    guid: a925392427a76574d87f3b60c03ab5f3
+  - enabled: 1
+    path: Assets/WoongjinAssets_3D/StoneAge/Scenes/4_Forest.unity
+    guid: 7d485674f3ed2ba45be59a445d06ea8a
+  m_configObjects: {}
