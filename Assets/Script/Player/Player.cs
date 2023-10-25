@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        anim.SetFloat("Move", moveVec.sqrMagnitude);
+        //anim.SetFloat("Move", moveVec.sqrMagnitude);
     }
 }
 
