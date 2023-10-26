@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     public GameObject talkButton;
     public GameObject joyStick;
     public GameObject dialog;
+    public GameObject npcCamera;
 
     bool isTalk;
 
@@ -34,10 +35,12 @@ public class NPC : MonoBehaviour
     }
     public void Onclick()
     {
-        Debug.Log("클릭");
         joyStick.gameObject.SetActive(false);
-        isTalk = true;
-
         dialog.gameObject.SetActive(true);
+        // npc 전용 뷰로 이동
+        npcCamera.gameObject.SetActive(true);
+        talkButton.gameObject.SetActive(false);
+
+        isTalk = true;
     }
 }
