@@ -788,6 +788,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4_TangedPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 8676024266536863859, guid: 677df19b9e46db74682da0ff009d6f51, type: 3}
+      propertyPath: fastGrindingVal
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676024266536863859, guid: 677df19b9e46db74682da0ff009d6f51, type: 3}
+      propertyPath: slowGrindingVal
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

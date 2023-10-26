@@ -1,46 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StoneControl : MonoBehaviour
 {
+    [SerializeField] float fastGrindingVal = 10f;
+    [SerializeField] float slowGrindingVal = 2.5f;
+
     ParticleSystem grindingParticle;
 
     bool isClicked = false;
+    Vector3 mousePosition;
 
     void Start()
     {
         grindingParticle = GetComponentInChildren<ParticleSystem>();
     }
 
-    private void Update()
+    void Update()
     {
         if(isClicked)
         {
-            RaycastHit hit;
-            ParticleSystem.EmissionModule emissionModule = grindingParticle.emission;
+            ProcessGrinding();
+        }
+    }
 
-            Debug.DrawRay(gameObject.transform.position + new Vector3(0, 0, 0.25f), Vector3.forward, UnityEngine.Color.red);
+    void ProcessGrinding()
+    {
+        RaycastHit hit;
+        ParticleSystem.EmissionModule emissionModule = grindingParticle.emission;
+        float mouseDiffX;
+        float mouseDiffY;
 
-            if (Physics.Raycast(gameObject.transform.position + new Vector3(0, 0, 0.25f), Vector3.forward, out hit, 1000))
+        if (Physics.Raycast(gameObject.transform.position, Vector3.forward, out hit, 1000))
+        {
+            if (hit.transform.gameObject.name == "Tool_Grinding_Plate")
             {
-                if (hit.transform.gameObject.name == "Tool_Grinding_Plate")
+                mouseDiffX = Mathf.Abs(mousePosition.x - Input.mousePosition.x);
+                mouseDiffY = Mathf.Abs(mousePosition.y - Input.mousePosition.y);
+                emissionModule.enabled = true;
+                mousePosition = Input.mousePosition;
+
+                if(mouseDiffX > fastGrindingVal || mouseDiffY > fastGrindingVal)
                 {
-                    emissionModule.enabled = true;
+                    Debug.Log("fast");
+                }
+                else if(mouseDiffX < slowGrindingVal || mouseDiffY < slowGrindingVal)
+                {
+                    Debug.Log("slow");
+                }
+                else
+                {
+                    Debug.Log("Perfect");
                 }
             }
-            else
-            {
-                emissionModule.enabled = false;
-            }
+        }
+        else
+        {
+            emissionModule.enabled = false;
         }
     }
 
     void OnMouseDown()
     {
         isClicked = true;
+        mousePosition = Input.mousePosition;
     }
 
     void OnMouseUp()
