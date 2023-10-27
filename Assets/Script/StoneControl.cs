@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum GrindingSpeed {
+    fast,
+    slow,
+    perfect,
+    none
+}
+
 public class StoneControl : MonoBehaviour
 {
     [SerializeField] float fastGrindingVal = 10f;
@@ -9,6 +16,7 @@ public class StoneControl : MonoBehaviour
 
     bool isClicked = false;
     Vector3 mousePosition;
+    GrindingSpeed currentSpeed = GrindingSpeed.none;
 
     void Start()
     {
@@ -17,46 +25,71 @@ public class StoneControl : MonoBehaviour
 
     void Update()
     {
-        if(isClicked)
+        if(isClicked) // 돌이 클릭되면
         {
             ProcessGrinding();
+        }
+        else
+        {
+            currentSpeed = GrindingSpeed.none;
         }
     }
 
     void ProcessGrinding()
     {
         RaycastHit hit;
-        ParticleSystem.EmissionModule emissionModule = grindingParticle.emission;
-        float mouseDiffX;
-        float mouseDiffY;
+        var emissionModule = grindingParticle.emission;
 
-        if (Physics.Raycast(gameObject.transform.position, Vector3.forward, out hit, 1000))
+        if (Physics.Raycast(gameObject.transform.position, Vector3.forward, out hit, 1000)) // 돌에서 z축으로 레이저 발사
         {
-            if (hit.transform.gameObject.name == "Tool_Grinding_Plate")
+            if (hit.transform.gameObject.name == "Tool_Grinding_Plate") // 돌이 판 위에 있을경우에만
             {
-                mouseDiffX = Mathf.Abs(mousePosition.x - Input.mousePosition.x);
-                mouseDiffY = Mathf.Abs(mousePosition.y - Input.mousePosition.y);
+                Vector3 mouseDiff = GetMouseDiff();
+
                 emissionModule.enabled = true;
                 mousePosition = Input.mousePosition;
 
-                if(mouseDiffX > fastGrindingVal || mouseDiffY > fastGrindingVal)
-                {
-                    Debug.Log("fast");
-                }
-                else if(mouseDiffX < slowGrindingVal || mouseDiffY < slowGrindingVal)
-                {
-                    Debug.Log("slow");
-                }
-                else
-                {
-                    Debug.Log("Perfect");
-                }
+                DetectGrindingSpeed(mouseDiff); // 가는 속도 판별
             }
         }
         else
         {
             emissionModule.enabled = false;
+            currentSpeed = GrindingSpeed.none;
+            return;
         }
+    }
+
+    public GrindingSpeed GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
+
+    void DetectGrindingSpeed(Vector3 mouseDiff)
+    {
+        if (mouseDiff.x > fastGrindingVal || mouseDiff.y > fastGrindingVal)
+        {
+            currentSpeed = GrindingSpeed.fast;
+        }
+        else if (mouseDiff.x < slowGrindingVal || mouseDiff.y < slowGrindingVal)
+        {
+            currentSpeed = GrindingSpeed.slow;
+        }
+        else
+        {
+            currentSpeed = GrindingSpeed.perfect;
+        }
+    }
+
+    Vector3 GetMouseDiff()
+    {
+        float mouseDiffX;
+        float mouseDiffY;
+
+        mouseDiffX = Mathf.Abs(mousePosition.x - Input.mousePosition.x);
+        mouseDiffY = Mathf.Abs(mousePosition.y - Input.mousePosition.y);
+
+        return new Vector3(mouseDiffX, mouseDiffY, 0);
     }
 
     void OnMouseDown()
