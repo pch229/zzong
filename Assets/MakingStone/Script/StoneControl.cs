@@ -28,6 +28,7 @@ public class StoneControl : MonoBehaviour
         if(isClicked) // 돌이 클릭되면
         {
             ProcessGrinding();
+            Debug.Log(currentSpeed);
         }
         else
         {
