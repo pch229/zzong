@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public enum GrindingSpeed {
+public enum GrindingSpeed
+{
     fast,
     slow,
     perfect,
@@ -13,6 +14,7 @@ public class StoneControl : MonoBehaviour
     [SerializeField] float slowGrindingVal = 2.5f;
 
     ParticleSystem grindingParticle;
+    GameManager gameManager;
 
     bool isClicked = false;
     Vector3 mousePosition;
@@ -21,14 +23,17 @@ public class StoneControl : MonoBehaviour
     void Start()
     {
         grindingParticle = GetComponentInChildren<ParticleSystem>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        if(isClicked) // 돌이 클릭되면
+        if (isClicked) // 돌이 클릭되면
         {
-            ProcessGrinding();
-            Debug.Log(currentSpeed);
+            if (!gameManager.GetGameResult())
+            {
+                ProcessGrinding();
+            }
         }
         else
         {
@@ -106,11 +111,14 @@ public class StoneControl : MonoBehaviour
 
     void OnMouseDrag()
     {
-        float distance = Camera.main.WorldToScreenPoint(transform.position).z;
+        if (!gameManager.GetGameResult())
+        {
+            float distance = Camera.main.WorldToScreenPoint(transform.position).z;
 
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-        Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+            Vector3 objPos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        transform.position = objPos;
+            transform.position = objPos;
+        }
     }
 }
