@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,7 +14,8 @@ public class NPC_Dialogue : MonoBehaviour
     public GameObject npcCamera;
 
     public Text npcDialogue; // NPC의 대화를 출력할 텍스트
-    
+
+    public TalkManager talkManager;
 
     // NPC의 대화 내용
     string[] dialogues;
@@ -74,4 +76,5 @@ public class NPC_Dialogue : MonoBehaviour
             index++;
         }
     }
+
 }

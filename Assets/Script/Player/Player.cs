@@ -7,6 +7,11 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public GameManager manager;
+
+    public GameObject talkButton;
+    GameObject scanObject;
+    RaycastHit hit;
     /*public float moveSpeed = 5f;
     public float rotateSpeed = 180f;
     private Rigidbody playerRigidbody;
@@ -70,11 +75,31 @@ public class Player : MonoBehaviour
         Quaternion dirQuat = Quaternion.LookRotation(moveVec);
         Quaternion moveQuat = Quaternion.Slerp(rigid.rotation, dirQuat, 0.3f);
         rigid.MoveRotation(moveQuat);
+
+        Debug.DrawRay(transform.position, transform.forward, Color.yellow);
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        {
+            if (hit.collider.tag == "NPC")
+            {
+                scanObject = hit.collider.gameObject;
+            }
+        }
+        if (scanObject != null)
+        {
+            talkButton.gameObject.SetActive(true);
+        }
+
     }
 
     void LateUpdate()
     {
         //anim.SetFloat("Move", moveVec.sqrMagnitude);
+    }
+
+    public void Onclick()
+    {
+        manager.Action(scanObject);
+        //talkButton.gameObject.SetActive(false);
     }
 }
 
