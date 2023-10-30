@@ -13,17 +13,25 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject successModalObj;
     [SerializeField] GameObject failModalObj;
+    [SerializeField] int successRate;
 
-    GameState makeResult = GameState.none;
+    GameState gameState = GameState.none;
+    int rate = 0;
 
-    // Update is called once per frame
     void Update()
     {
-        if (makeResult == GameState.success)
+        if (gameState == GameState.success)
         {
-            successModalObj.SetActive(true);
+            if(rate < (successRate / 10))
+            {
+                successModalObj.SetActive(true);
+            }
+            else
+            {
+                gameState = GameState.fail;
+            }
         }
-        else if (makeResult == GameState.fail)
+        else if (gameState == GameState.fail)
         {
             failModalObj.SetActive(true);
         }
@@ -31,11 +39,16 @@ public class GameManager : MonoBehaviour
 
     public void SetGameResult(GameState result)
     {
-        makeResult = result;
+        gameState = result;
+    }
+
+    public void SetSuccessRate()
+    {
+        rate = Random.Range(0, 10);
     }
 
     public GameState GetGameResult()
     {
-        return makeResult;
+        return gameState;
     }
 }

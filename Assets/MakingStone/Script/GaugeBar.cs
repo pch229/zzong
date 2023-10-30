@@ -48,6 +48,7 @@ public class GaugeBar : MonoBehaviour
         yield return new WaitForSeconds(5f);
         if (arrowTransform.anchoredPosition.y < -115 && arrowTransform.anchoredPosition.y > -190)
         {
+            gameManager.SetSuccessRate();
             gameManager.SetGameResult(GameState.success);
         }
     }

@@ -1,13 +1,5 @@
 using UnityEngine;
 
-public enum GrindingSpeed
-{
-    fast,
-    slow,
-    perfect,
-    none
-}
-
 public class StoneControl : MonoBehaviour
 {
     ParticleSystem grindingParticle;
@@ -16,7 +8,6 @@ public class StoneControl : MonoBehaviour
 
     bool isClicked = false;
     Vector3 mousePosition;
-    GrindingSpeed currentSpeed = GrindingSpeed.none;
 
     void Start()
     {
@@ -33,10 +24,6 @@ public class StoneControl : MonoBehaviour
             {
                 ProcessGrinding();
             }
-        }
-        else
-        {
-            currentSpeed = GrindingSpeed.none;
         }
     }
 
@@ -60,14 +47,8 @@ public class StoneControl : MonoBehaviour
         else
         {
             emissionModule.enabled = false;
-            currentSpeed = GrindingSpeed.none;
             return;
         }
-    }
-
-    public GrindingSpeed GetCurrentSpeed()
-    {
-        return currentSpeed;
     }
 
     void DetectGrindingSpeed(Vector3 mouseDiff)

@@ -415,6 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   successModalObj: {fileID: 1116108709}
   failModalObj: {fileID: 6132973186347244892}
+  successRate: 70
 --- !u!1001 &539488154
 PrefabInstance:
   m_ObjectHideFlags: 0
