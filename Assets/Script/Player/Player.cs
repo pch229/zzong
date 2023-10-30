@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 }*/
     public FixedJoystick joy;
     public float speed;
+    private bool isWalking = false;
+    private bool isIdle = false;
 
     Rigidbody rigid;
     Animator anim;
@@ -50,7 +52,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -64,17 +66,31 @@ public class Player : MonoBehaviour
         rigid.MovePosition(rigid.position + moveVec);
 
         if (moveVec.sqrMagnitude == 0)
-            return; // #. No input = No Rotation
+        {
+            isWalking = false; // No input, so not walking
+            isIdle = true; // Player is idle
+            //return; // #. No input = No Rotation
+        }
+        else
+        {
+            isWalking = true; // Player is walking
+            isIdle = false; // Not idle
+        }
+        if (isWalking)
+        {
+            // 3. Move Rotation
+            Quaternion dirQuat = Quaternion.LookRotation(moveVec);
+            Quaternion moveQuat = Quaternion.Slerp(rigid.rotation, dirQuat, 0.3f);
+            rigid.MoveRotation(moveQuat);
 
-        // 3. Move Rotation
-        Quaternion dirQuat = Quaternion.LookRotation(moveVec);
-        Quaternion moveQuat = Quaternion.Slerp(rigid.rotation, dirQuat, 0.3f);
-        rigid.MoveRotation(moveQuat);
+        }
     }
 
     void LateUpdate()
     {
-        //anim.SetFloat("Move", moveVec.sqrMagnitude);
+        anim.SetBool("isWalking",isWalking);
+        anim.SetBool("isIdle",isIdle);
+
     }
 }
 
