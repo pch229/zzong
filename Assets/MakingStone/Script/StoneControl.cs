@@ -10,11 +10,9 @@ public enum GrindingSpeed
 
 public class StoneControl : MonoBehaviour
 {
-    [SerializeField] float fastGrindingVal = 10f;
-    [SerializeField] float slowGrindingVal = 2.5f;
-
     ParticleSystem grindingParticle;
     GameManager gameManager;
+    GaugeBar gaugeBar;
 
     bool isClicked = false;
     Vector3 mousePosition;
@@ -24,13 +22,14 @@ public class StoneControl : MonoBehaviour
     {
         grindingParticle = GetComponentInChildren<ParticleSystem>();
         gameManager = FindObjectOfType<GameManager>();
+        gaugeBar = FindObjectOfType<GaugeBar>();
     }
 
     void Update()
     {
         if (isClicked) // 돌이 클릭되면
         {
-            if (!gameManager.GetGameResult())
+            if (gameManager.GetGameResult() == GameState.none)
             {
                 ProcessGrinding();
             }
@@ -73,17 +72,9 @@ public class StoneControl : MonoBehaviour
 
     void DetectGrindingSpeed(Vector3 mouseDiff)
     {
-        if (mouseDiff.x > fastGrindingVal || mouseDiff.y > fastGrindingVal)
+        if (mouseDiff.x > 0 || mouseDiff.y > 0)
         {
-            currentSpeed = GrindingSpeed.fast;
-        }
-        else if (mouseDiff.x < slowGrindingVal || mouseDiff.y < slowGrindingVal)
-        {
-            currentSpeed = GrindingSpeed.slow;
-        }
-        else
-        {
-            currentSpeed = GrindingSpeed.perfect;
+            gaugeBar.AddForceToGauge();
         }
     }
 
@@ -111,7 +102,7 @@ public class StoneControl : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (!gameManager.GetGameResult())
+        if (gameManager.GetGameResult() == GameState.none)
         {
             float distance = Camera.main.WorldToScreenPoint(transform.position).z;
 

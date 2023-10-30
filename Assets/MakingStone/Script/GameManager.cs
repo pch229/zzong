@@ -2,33 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState
+{
+    success,
+    fail,
+    none
+}
+
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject resultModalObj;
+    [SerializeField] GameObject successModalObj;
+    [SerializeField] GameObject failModalObj;
 
-    bool isGameFinish = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    GameState makeResult = GameState.none;
 
     // Update is called once per frame
     void Update()
     {
-        if(isGameFinish)
+        if (makeResult == GameState.success)
         {
-            resultModalObj.SetActive(true);
+            successModalObj.SetActive(true);
+        }
+        else if (makeResult == GameState.fail)
+        {
+            failModalObj.SetActive(true);
         }
     }
 
-    public void SetGameResult(bool result)
+    public void SetGameResult(GameState result)
     {
-        isGameFinish = result;
+        makeResult = result;
     }
 
-    public bool GetGameResult()
+    public GameState GetGameResult()
     {
-        return isGameFinish;
+        return makeResult;
     }
 }
