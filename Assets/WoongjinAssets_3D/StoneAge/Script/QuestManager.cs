@@ -17,8 +17,8 @@ public class QuestManager : MonoBehaviour
 
     void GenerateData()
     {
-        questList.Add(10, new QuestData("뗀석기 만들기", new int[] {1000, 2000}));
-        questList.Add(20, new QuestData("간석기 만들기", new int[] {1000, 2000}));
+        questList.Add(10, new QuestData("족장 할아버지와 대화하기", new int[] {1000, 2000}));
+        questList.Add(20, new QuestData("나무 채집하기", new int[] {1000, 2000}));
     }
 
     public int GetQuestTalkIndex(int id)
@@ -34,6 +34,11 @@ public class QuestManager : MonoBehaviour
         if (questActionIndex == questList[questId].npcId.Length)
             NextQuest();
 
+        return questList[questId].questName;
+    }
+
+    public string CheckQuest()
+    {
         return questList[questId].questName;
     }
 

@@ -3765,23 +3765,6 @@ MonoBehaviour:
   joyStick: {fileID: 911855735}
   dialog: {fileID: 531329473}
   npcCamera: {fileID: 893013115}
---- !u!114 &953256653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953256649}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048fe7a191260cf46aa1cc3112f17d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joyStick: {fileID: 911855735}
-  dialog: {fileID: 531329473}
-  npcCamera: {fileID: 893013115}
-  npcDialogue: {fileID: 1519065150}
-  talkManager: {fileID: 0}
 --- !u!114 &953256654
 MonoBehaviour:
   m_ObjectHideFlags: 0

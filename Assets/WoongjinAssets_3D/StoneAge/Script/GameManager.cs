@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     public QuestManager questManager;
 
+    private void Start()
+    {
+        Debug.Log(questManager.CheckQuest());
+    }
+
     public void Action(GameObject scanObj)
     {
 

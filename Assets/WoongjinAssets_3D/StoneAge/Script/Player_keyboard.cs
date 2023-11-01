@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 
-public class Playe_keyboard : MonoBehaviour
+public class Player_keyboard : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
 
