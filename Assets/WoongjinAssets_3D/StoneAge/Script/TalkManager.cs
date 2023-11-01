@@ -23,7 +23,9 @@ public class TalkManager : MonoBehaviour
 
     void GenerateData()
     {
-        talkData.Add(1000, new string[] { "안녕", "나는 족장 할아버지야" });
+        talkData.Add(1000, new string[] { "안녕", 
+                                          "나는 족장 할아버지야",
+                                          "미션을 줄게"});
         talkData.Add(2000, new string[] { "날씨가 좋군" });
         talkData.Add(3000, new string[] { "열매 채집을 해야겠어!" });
 
@@ -37,7 +39,6 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalk(int id, int talkIndex)
     {
-        
         if (talkIndex == talkData[id].Length)
         {
             return null;

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.HID;
 public class Playe_keyboard : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
-    RaycastHit hit;
 
     public GameManager manager;
 
@@ -17,7 +16,7 @@ public class Playe_keyboard : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKey(KeyCode.Space) && scanObject != null)
+        if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
         {
             manager.Action(scanObject);
         }
@@ -38,11 +37,13 @@ public class Playe_keyboard : MonoBehaviour
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
 
         Debug.DrawRay(transform.position, transform.forward, Color.yellow);
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        RaycastHit rayHit; 
+        if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
+
         {
-            if (hit.collider.tag == "NPC")
+            if (rayHit.collider.tag == "NPC")
             {
-                scanObject = hit.collider.gameObject;
+                scanObject = rayHit.collider.gameObject;
                 talkButton.gameObject.SetActive(true);
             } 
             else scanObject = null;

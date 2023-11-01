@@ -29,38 +29,41 @@ public class GameManager : MonoBehaviour
         joyStick.gameObject.SetActive(!isAction);
     }
 
-        public void Talk(int id, bool isNPC)
+    public void Talk(int id, bool isNPC)
+    {
+        //Set Talk Data
+        int questTalkIndex = questManager.GetQuestTalkIndex(id);
+        //string talkData = talkManager.GetTalk(id, talkIndex);
+        string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
+
+        // End Talk
+        if (talkData == null)
         {
-            //Set Talk Data
-            int questTalkIndex = questManager.GetQuestTalkIndex(id);
-            string talkData = talkManager.GetTalk(id+ questTalkIndex, talkIndex);
-
-            // End Talk
-            if (talkData == null)
-            {
-                isAction = false;
-                talkIndex = 0;
-                Debug.Log(questManager.CheckQuest(id));
-                return;
-            }
-
-            //Continue Talk
-            if (isNPC)
-            {
-                talkText.text = talkData;
-            }
-            else
-            {
-                talkText.text = talkData;
-            }
-
-            isAction = true;
-            talkIndex++;
+           Debug.Log("isTalk = false");
+           isAction = false;
+           talkIndex = 0;
+           Debug.Log(questManager.CheckQuest(id));
+           
+           return;
         }
 
-        public void OnClick()
+        //Continue Talk
+        if (isNPC)
         {
-            isAction = false;
+           talkText.text = talkData;
         }
+        else
+        {
+           talkText.text = talkData;
+        }
+        Debug.Log("isTalk = true");
+        isAction = true;
+        talkIndex++;
+    }
+
+    public void OnClick()
+    {
+        isAction = false;
+    }
     
 }
