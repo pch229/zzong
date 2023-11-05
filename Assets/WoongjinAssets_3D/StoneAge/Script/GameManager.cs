@@ -25,13 +25,13 @@ public class GameManager : MonoBehaviour
 
     public void Action(GameObject scanObj)
     {
-
         scanObject = scanObj;
         ObjData objData = scanObject.GetComponent<ObjData>();
         Talk(objData.id, objData.isNPC);
 
         talkPanel.SetActive(isAction);
         joyStick.gameObject.SetActive(!isAction);
+        Debug.Log("Action()");
     }
 
     public void Talk(int id, bool isNPC)
@@ -44,31 +44,36 @@ public class GameManager : MonoBehaviour
         // End Talk
         if (talkData == null)
         {
-           Debug.Log("isTalk = false");
-           isAction = false;
-           talkIndex = 0;
-           Debug.Log(questManager.CheckQuest(id));
-           
-           return;
+            isAction = false;
+            Debug.Log("isAction = false");
+
+            talkIndex = 0;
+            Debug.Log(questManager.CheckQuest(id));
+            
+            return;
         }
 
-        //Continue Talk
         if (isNPC)
         {
-           talkText.text = talkData;
+            StartCoroutine(TypeSentence(talkData));
         }
-        else
+        else 
         {
-           talkText.text = talkData;
+            StartCoroutine(TypeSentence(talkData));
         }
-        Debug.Log("isTalk = true");
         isAction = true;
         talkIndex++;
+        Debug.Log(talkIndex);
     }
 
-    public void OnClick()
+    // 글자 천천히 나오게
+    IEnumerator TypeSentence(string sentence)
     {
-        isAction = false;
+        talkText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            talkText.text += letter;
+            yield return new WaitForSeconds(0.1f); // 이 값은 적절하게 조절하여 속도를 변경할 수 있습니다.
+        }
     }
-    
 }

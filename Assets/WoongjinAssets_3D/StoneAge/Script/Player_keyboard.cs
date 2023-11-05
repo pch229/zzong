@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Player_keyboard : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
 
     public GameManager manager;
+    public GameObject scanObject;
+    public Button talkButton;
 
-    public GameObject talkButton;
-    GameObject scanObject;
-    public bool isTalk = false;
+    
+    void Awake()
+    {
+        talkButton.onClick.AddListener(() => TalkStart());
+    }
 
+    void TalkStart()
+    {
+        if (scanObject != null)
+        {
+            manager.Action(scanObject);
+        }
+    }
+    
     private void Update()
     {
         
@@ -22,6 +36,8 @@ public class Player_keyboard : MonoBehaviour
         }
         
     }
+    
+
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.W))
@@ -39,7 +55,6 @@ public class Player_keyboard : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward, Color.yellow);
         RaycastHit rayHit; 
         if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
-
         {
             if (rayHit.collider.tag == "NPC")
             {
@@ -49,10 +64,4 @@ public class Player_keyboard : MonoBehaviour
             else scanObject = null;
         }
     }
-    /*
-    public void Onclick()
-    {
-        isTalk = true;
-    }
-    */
 }

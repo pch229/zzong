@@ -4,14 +4,16 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public GameManager manager;
 
-    public GameObject talkButton;
+    public Button talkButton;
     GameObject scanObject;
     RaycastHit hit;
+
     /*public float moveSpeed = 5f;
     public float rotateSpeed = 180f;
     private Rigidbody playerRigidbody;
@@ -52,8 +54,18 @@ public class Player : MonoBehaviour
     Animator anim;
     Vector3 moveVec;
 
+    void TalkStart()
+    {
+        if (scanObject != null)
+        {
+            manager.Action(scanObject);
+        }
+    }
+
     void Awake()
     {
+        talkButton.onClick.AddListener(() => TalkStart());
+
         rigid = GetComponent<Rigidbody>();
         //anim = GetComponent<Animator>();
     }
@@ -77,16 +89,16 @@ public class Player : MonoBehaviour
         rigid.MoveRotation(moveQuat);
 
         Debug.DrawRay(transform.position, transform.forward, Color.yellow);
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        RaycastHit rayHit;
+        if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
         {
-            if (hit.collider.tag == "NPC")
+            Debug.Log(scanObject);
+            if (rayHit.collider.tag == "NPC")
             {
-                scanObject = hit.collider.gameObject;
+                scanObject = rayHit.collider.gameObject;
+                talkButton.gameObject.SetActive(true);
             }
-        }
-        if (scanObject != null)
-        {
-            talkButton.gameObject.SetActive(true);
+            else scanObject = null;
         }
 
     }
@@ -96,11 +108,6 @@ public class Player : MonoBehaviour
         //anim.SetFloat("Move", moveVec.sqrMagnitude);
     }
 
-    public void Onclick()
-    {
-        manager.Action(scanObject);
-        //talkButton.gameObject.SetActive(false);
-    }
 }
 
 
