@@ -5,8 +5,8 @@ public class MovingJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 {
     [SerializeField] RectTransform lever;
     [SerializeField, Range(10f, 150f)] float leverRange = 30f;
-    [SerializeField] RectTransform crossHair;
-    [SerializeField] float moveSpeed = 100f;
+    [SerializeField] Transform crossHair;
+    [SerializeField] float moveSpeed = 10f;
 
     private RectTransform rectTransform;
     private Vector2 inputVector;
@@ -23,7 +23,7 @@ public class MovingJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         {
             Vector2 pos = inputVector * moveSpeed * Time.deltaTime;
 
-            crossHair.anchoredPosition += pos;
+            crossHair.Translate(new Vector3(pos.x, pos.y, 0));
         }
     }
 

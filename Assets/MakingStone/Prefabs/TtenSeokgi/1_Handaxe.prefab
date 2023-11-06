@@ -330,7 +330,9 @@ GameObject:
   - component: {fileID: 8078123738659078166}
   - component: {fileID: 2703574137292184370}
   - component: {fileID: 8657968429140252401}
-  - component: {fileID: 7852099717151825412}
+  - component: {fileID: 5952101907693457176}
+  - component: {fileID: 6003151197718191993}
+  - component: {fileID: 6032378814700169865}
   m_Layer: 0
   m_Name: 1_Handaxe
   m_TagString: Untagged
@@ -395,7 +397,42 @@ PlayableDirector:
     value: {fileID: 2703574137292184370}
   m_ExposedReferences:
     m_References: []
---- !u!114 &7852099717151825412
+--- !u!70 &5952101907693457176
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562861694660799882}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.15, y: 0.2}
+  m_Direction: 0
+--- !u!114 &6003151197718191993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,9 +441,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 4562861694660799882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef7cc77300e8e854e86558aea5ac0c23, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e713909e0582b4b82a5ae401fee2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 5
+--- !u!50 &6032378814700169865
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562861694660799882}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5935979754685965726
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+
+public enum HittingTimingState
+{
+    SUCCESS_TIMING,
+    FAIL_TIMING,
+    NONE
+}
 
 public class RotateGauge : MonoBehaviour
 {
     [SerializeField] RectTransform parentRectTransform;
-    [SerializeField] float speed = 2.0f;  // ¼Óµµ
-    [SerializeField] bool isHitTiming = false;
+    [SerializeField] float speed = 2.0f;
+    [SerializeField] HittingTimingState isHitTiming = HittingTimingState.NONE;
 
     RectTransform gaugeRectTransform;
 
@@ -26,14 +30,18 @@ public class RotateGauge : MonoBehaviour
     {
         Vector2 newPos = Vector2.zero - gaugeRectTransform.anchoredPosition;
         float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg + 180;
-        // Debug.Log(rotZ);
-        if(rotZ >= 50 && rotZ <= 138)
+
+        if (rotZ >= 50 && rotZ <= 138)
         {
-            isHitTiming = true;
+            isHitTiming = HittingTimingState.SUCCESS_TIMING;
+        }
+        else if (rotZ > 138 && rotZ < 230)
+        {
+            isHitTiming = HittingTimingState.NONE;
         }
         else
         {
-            isHitTiming = false;
+            isHitTiming = HittingTimingState.FAIL_TIMING;
         }
         gaugeRectTransform.rotation = Quaternion.Euler(0, 0, rotZ);
 
@@ -43,9 +51,14 @@ public class RotateGauge : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "GaugePoint")
+        if (collision.gameObject.tag == "GaugePoint")
         {
             arrowDir *= -1;
         }
+    }
+
+    public HittingTimingState GetIsHitTiming()
+    {
+        return isHitTiming;
     }
 }
