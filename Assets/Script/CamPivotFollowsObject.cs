@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Security.Cryptography;
 using UnityEngine;
 
-public class FollowingCamera : MonoBehaviour
+public class CamPivotFollowsObject : MonoBehaviour
 {
-    public Transform following_object;
-    public FixedJoystick joystick;
-    public float cameraSpeed;
-    private float totalRotation = 0f;
+    public Transform following_object;//무엇을 카메라가 따라갈건지 변수로 선언해줌
+    public FixedJoystick joystick;//조이스틱 변수 
+    public float cameraSpeed;// 조이스틱을 움직여서 카메라를 회전시킬 때 어느정도의 스피드로 할 것인지 설정.
+    private float totalRotation = 0f;// 카메라 회전의 누적값
     public GameObject inventory;
    
 
@@ -33,6 +31,7 @@ public class FollowingCamera : MonoBehaviour
         if(horizontalInput != 0 || verticalInput != 0)
         {
            
+            //카메라 회전 관련 수식, y축 기준으로 회전했을 때 제외하고는 모두 음수의 값으로 회전 하지 않도록 설정.
                 float yrotationAngle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
                 float zrotationAngle = Mathf.Max(0, Mathf.Atan2(verticalInput, horizontalInput) * Mathf.Rad2Deg);
                 float xrotationAngle = Mathf.Max(0, Mathf.Atan2(verticalInput, horizontalInput) * Mathf.Rad2Deg);

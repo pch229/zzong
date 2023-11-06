@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
             rigid.MoveRotation(moveQuat);
         }
     }
+
     void LateUpdate()
     {
         anim.SetBool("isWalking",isWalking);
