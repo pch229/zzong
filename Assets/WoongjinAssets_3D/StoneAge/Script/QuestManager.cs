@@ -18,8 +18,12 @@ public class QuestManager : MonoBehaviour
 
     void GenerateData()
     {
+        questList.Add(10, new QuestData("족장 할아버지와 대화하기", new int[] { 1000 }));
+        questList.Add(20, new QuestData("석기 제작하기", new int[] { 1000 }));
+        /*
         questList.Add(10, new QuestData("족장 할아버지와 대화하기", new int[] {1000, 2000}));
         questList.Add(20, new QuestData("나무 채집하기", new int[] {1000, 2000}));
+        */
     }
 
     public int GetQuestTalkIndex(int id)

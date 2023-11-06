@@ -42,8 +42,12 @@ public class TalkManager : MonoBehaviour
         // 퀘스트 번호 + NPC Id
         talkData.Add(10 + 1000, new string[] { "일어났구나", 
                                                "미션을 줄게" });
+        talkData.Add(20 + 1000, new string[] { "성공했구나",
+                                               "두번째 미션을 줄게" });
+        /*
         talkData.Add(11 + 2000, new string[] { "재료를 받으러 왔니?",
                                                "여기 있어" });
+        */
     }
 
     public string GetTalk(int id, int talkIndex)
@@ -74,6 +78,11 @@ public class TalkManager : MonoBehaviour
 
     void NextTalk()
     {
+       
+            manager.Action(scanObject);
+            Debug.Log("NextTalk()");
+        
+        /*
         //이게 문제인듯
         if (manager.isAction)
         {
@@ -81,12 +90,14 @@ public class TalkManager : MonoBehaviour
             manager.Talk(manager.scanObject.GetComponent<ObjData>().id, manager.scanObject.GetComponent<ObjData>());
             manager.questManager.CheckQuest(manager.scanObject.GetComponent<ObjData>().id);
         }
+        */
     }
 
     void OutTalk()
     {
         talkPanel.SetActive(false);
         joyStick.gameObject.SetActive(true);
+        manager.talkIndex = 0;
     }
 
 }

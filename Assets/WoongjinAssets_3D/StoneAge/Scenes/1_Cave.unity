@@ -1117,15 +1117,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146874374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 475acd8661712f7468422a51b3948e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 623019549}
-  talkButton: {fileID: 1216420849}
+  talkButton: {fileID: 1216420850}
   joy: {fileID: 1250815111}
-  speed: 2
+  speed: 3
 --- !u!114 &146874381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,8 +1140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   manager: {fileID: 623019549}
-  talkButton: {fileID: 1216420849}
-  isTalk: 0
+  scanObject: {fileID: 0}
+  talkButton: {fileID: 1216420850}
 --- !u!1 &153854350
 GameObject:
   m_ObjectHideFlags: 0
@@ -5581,6 +5581,8 @@ MonoBehaviour:
   nextButton: {fileID: 153854352}
   outButton: {fileID: 1961832403}
   manager: {fileID: 623019549}
+  talkPanel: {fileID: 531329473}
+  joyStick: {fileID: 911855735}
 --- !u!1001 &1675025146
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,7 +13,14 @@ public class Player_keyboard : MonoBehaviour
     public GameObject scanObject;
     public Button talkButton;
 
-    
+    float distance;
+    public float withNPCDistance;
+    GameObject NPC;
+
+    private void Start()
+    {
+        NPC = GameObject.FindGameObjectWithTag("NPC");
+    }
     void Awake()
     {
         talkButton.onClick.AddListener(() => TalkStart());
@@ -33,8 +40,17 @@ public class Player_keyboard : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
         {
             manager.Action(scanObject);
+            Debug.Log("manager.Action");
         }
         
+        // 거리 체크 미완성이라 완성해주세욥
+        distance = Vector3.Distance(NPC.transform.position, transform.position);
+
+        if (distance <= withNPCDistance)
+        {
+            scanObject = .collider.gameObject;
+            talkButton.gameObject.SetActive(true);
+        }
     }
     
 
@@ -52,6 +68,7 @@ public class Player_keyboard : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
 
+        /*
         Debug.DrawRay(transform.position, transform.forward, Color.yellow);
         RaycastHit rayHit; 
         if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
@@ -63,5 +80,6 @@ public class Player_keyboard : MonoBehaviour
             } 
             else scanObject = null;
         }
+        */
     }
 }
