@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class Player : MonoBehaviour
 {
     public FixedJoystick joy;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
     }
     public void Onclick()
     {
-        if(!isJumping)
+        if (!isJumping)
         {
             anim.SetTrigger("isJump");
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag ("inven"))
+        if (other.CompareTag("inven"))
         {
             inventory.gameObject.SetActive(true);
             Canvas.gameObject.SetActive(false);
@@ -52,12 +53,21 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("inven"))
+        if (other.CompareTag("to"))
         {
-            isWalking = true; 
+            isWalking = true;
             isIdle = false;
         }
     }
+    public void makeClose()
+    {
+        inventory.gameObject.SetActive(false);
+        Canvas.gameObject.SetActive(true);
+        isWalking = true;
+        isIdle = true;
+
+    }
+
 
     void Awake()
     {
@@ -76,9 +86,10 @@ public class Player : MonoBehaviour
         rigid.MovePosition(rigid.position + moveVec);
 
 
-        if (moveVec.sqrMagnitude == 0) { 
+        if (moveVec.sqrMagnitude == 0)
+        {
             isWalking = false;
-           isIdle = true;
+            isIdle = true;
             //StopMovement();
             // #. No input = No Rotation
         }
@@ -98,7 +109,7 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        anim.SetBool("isWalking",isWalking);
+        anim.SetBool("isWalking", isWalking);
         anim.SetBool("isIdle", isIdle);
     }
     void StopMovement()
@@ -110,6 +121,7 @@ public class Player : MonoBehaviour
     {
         Background.gameObject.SetActive(true);
     }
+
 }
 
 

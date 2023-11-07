@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/09.Test/Jin/JIn_TreeTest.unity
+    path: 
     guid: 638b1dd0b039273439350e0f88f35bd0
   - enabled: 0
-    path: Assets/09.Test/Jin/3_Settlement_Jin.unity
+    path: 
     guid: d8a413e4d86e5d144978b16e6887bf5f
+  - enabled: 1
+    path: Assets/WoongjinAssets_3D/StoneAge/Scenes/Working Scene.unity
+    guid: 82c58ebec403ce141a22f53a548ed1ec
   - enabled: 1
     path: Assets/WoongjinAssets_3D/StoneAge/Scenes/1_Cave.unity
     guid: 5ede1a1d9fc75f84689a80354cac43eb

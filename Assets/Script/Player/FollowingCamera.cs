@@ -24,6 +24,7 @@ public class FollowingCamera : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
         Vector3 pos = this.transform.position;
         this.transform.position = Vector3.Lerp(pos, following_object.position, 0.4f);
 
