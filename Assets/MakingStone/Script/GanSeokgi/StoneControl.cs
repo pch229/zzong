@@ -29,10 +29,10 @@ public class StoneControl : MonoBehaviour
 
     void ProcessGrinding()
     {
-        RaycastHit hit;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 10f);
         var emissionModule = grindingParticle.emission;
 
-        if (Physics.Raycast(gameObject.transform.position, Vector3.forward, out hit, 1000)) // 돌에서 z축으로 레이저 발사
+        if (hit) // 돌에서 z축으로 레이저 발사
         {
             if (hit.transform.gameObject.name == "Tool_Grinding_Plate") // 돌이 판 위에 있을경우에만
             {
