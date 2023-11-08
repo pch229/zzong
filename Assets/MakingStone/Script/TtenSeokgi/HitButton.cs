@@ -3,8 +3,8 @@ using UnityEngine.Playables;
 
 public class HitButton : MonoBehaviour
 {
-    PlayableDirector hitPlayDir;
-    ParticleSystem hitParticle;
+    [SerializeField] PlayableDirector hitPlayDir;
+    [SerializeField] ParticleSystem hitParticle;
     RotateGauge rotateGauge;
     TtenSeokgi ttenSeokgi;
     GameManager gameManager;
@@ -12,8 +12,6 @@ public class HitButton : MonoBehaviour
 
     private void Start()
     {
-        hitPlayDir = FindObjectOfType<PlayableDirector>();
-        hitParticle = FindObjectOfType<ParticleSystem>();
         rotateGauge = FindObjectOfType<RotateGauge>();
         ttenSeokgi = FindObjectOfType<TtenSeokgi>();
         gameManager = FindObjectOfType<GameManager>();
