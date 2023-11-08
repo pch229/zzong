@@ -669,7 +669,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 300, y: 140}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111438672
 --- !u!1001 &108637431
@@ -2776,7 +2776,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 300, y: 150}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &488574409
 MonoBehaviour:
@@ -2822,9 +2822,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1543191413}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: makeClose
+      - m_Target: {fileID: 1543191417}
+        m_TargetAssemblyTypeName: SceneControll, Assembly-CSharp
+        m_MethodName: CaveSceneChanger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
