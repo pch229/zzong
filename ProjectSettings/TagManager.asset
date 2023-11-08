@@ -9,8 +9,6 @@ TagManager:
   - GaugePoint
   - CaveEntrance
   - toForest
-  - DialoguePanel
-  - NPC
   layers:
   - Default
   - TransparentFX
@@ -18,7 +16,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - Object
+  - 
   - 
   - 
   - 
