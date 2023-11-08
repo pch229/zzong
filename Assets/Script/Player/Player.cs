@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isJumping = true;
         }
+        else
+        {
+            isJumping = false;
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -53,7 +57,7 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("to"))
+        if (other.CompareTag("inven"))
         {
             isWalking = true;
             isIdle = false;
