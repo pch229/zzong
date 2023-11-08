@@ -6,7 +6,7 @@ public class Gamemanager : MonoBehaviour
 {
     public enum GameInstance
     {
-        RockAxe1,
+        RockAxe99,
         RockAxe2,
         RockAxe3,
         TTenSeokki1,
@@ -15,37 +15,46 @@ public class Gamemanager : MonoBehaviour
         none,
     }
     private static Gamemanager instance;
-    private GameInstance selectedStone;
+    public GameInstance selectedStone;
 
-    public static Gamemanager Instance
+    void Awake()
     {
-        get
+        int gameManagerCount = FindObjectsOfType<GameManager>().Length;
+
+        if(gameManagerCount > 1)
         {
-            if(instance == null)
-            {
-                instance = FindObjectOfType<Gamemanager>();
-                if(instance != null )
-                {
-                    GameObject obj = new GameObject("Gamemanager");
-                    instance = obj.AddComponent<Gamemanager>();
-                }    
-            }
-            return instance;
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
         }
     }
+
+    //public static Gamemanager Instance
+    //{
+    //    get
+    //    {
+    //        if(instance == null)
+    //        {
+    //            instance = FindObjectOfType<Gamemanager>();
+    //            if(instance != null )
+    //            {
+    //                GameObject obj = new GameObject("Gamemanager");
+    //                instance = obj.AddComponent<Gamemanager>();
+    //            }    
+    //        }
+    //        return instance;
+    //    }
+    //}
    public void SetSelectedStone(GameInstance stone)
     {
+        Debug.Log(stone);
         selectedStone = stone;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public GameInstance GetSelectedStone()
     {
-        
+        return selectedStone;
     }
 }

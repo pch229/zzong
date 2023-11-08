@@ -9,6 +9,8 @@ TagManager:
   - GaugePoint
   - CaveEntrance
   - toForest
+  - TT
+  - Gan
   layers:
   - Default
   - TransparentFX
