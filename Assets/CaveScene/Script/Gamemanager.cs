@@ -6,22 +6,21 @@ public class Gamemanager : MonoBehaviour
 {
     public enum GameInstance
     {
-        RockAxe99,
-        RockAxe2,
-        RockAxe3,
-        TTenSeokki1,
-        TTenSeokki2,
-        TTenSeokki3,
+        TtenSeokki1,
+        TtenSeokki2,
+        TtenSeokki3,
+        GanSeokki1,
+        GanSeokki2,
+        GanSeokki3,
         none,
     }
-    private static Gamemanager instance;
     public GameInstance selectedStone;
 
     void Awake()
     {
         int gameManagerCount = FindObjectsOfType<GameManager>().Length;
 
-        if(gameManagerCount > 1)
+        if (gameManagerCount > 1)
         {
             Destroy(gameObject);
         }
@@ -31,25 +30,12 @@ public class Gamemanager : MonoBehaviour
         }
     }
 
-    //public static Gamemanager Instance
-    //{
-    //    get
-    //    {
-    //        if(instance == null)
-    //        {
-    //            instance = FindObjectOfType<Gamemanager>();
-    //            if(instance != null )
-    //            {
-    //                GameObject obj = new GameObject("Gamemanager");
-    //                instance = obj.AddComponent<Gamemanager>();
-    //            }    
-    //        }
-    //        return instance;
-    //    }
-    //}
-   public void SetSelectedStone(GameInstance stone)
+    void Start()
     {
-        Debug.Log(stone);
+        selectedStone = GameInstance.none;
+    }
+    public void SetSelectedStone(GameInstance stone)
+    {
         selectedStone = stone;
     }
 

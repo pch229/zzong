@@ -10,96 +10,58 @@ using Image = UnityEngine.UI.Image;
 
 public class Inventory : MonoBehaviour
 {
-    public Button[] ttButtons;
-    public Button[] ganButtons;
-    public Image[] RockAxes;
-    public Image[] Slices;
-    private Gamemanager gameManager;
-    public Gamemanager.GameInstance[] ttEnumValues =
-        {
-        Gamemanager.GameInstance.RockAxe99,
-        Gamemanager.GameInstance.RockAxe2,
-        Gamemanager.GameInstance.RockAxe3,
+    public GameObject[] backgroundArr = {};
+    public Gamemanager gameManager;
+    private Gamemanager.GameInstance[] stoneEnumArr = {
+        Gamemanager.GameInstance.TtenSeokki1,
+        Gamemanager.GameInstance.TtenSeokki2,
+        Gamemanager.GameInstance.TtenSeokki3,
+        Gamemanager.GameInstance.GanSeokki1,
+        Gamemanager.GameInstance.GanSeokki2,
+        Gamemanager.GameInstance.GanSeokki3,
     };
-    private Gamemanager.GameInstance[] ganEnumValues =
-       {
-        Gamemanager.GameInstance.TTenSeokki1,
-        Gamemanager.GameInstance.TTenSeokki2,
-        Gamemanager.GameInstance.TTenSeokki3,
-    };
-    private Image activeImage;
-    //private int[] activeRockAxesIndices;
-    //private int[] activeSlicesIndices;
+    public Image currentImage;
+    public Image[] activeImageArr;
     void Start()
     {
-        // gameManager = Gamemanager.Instance;
-        //activeRockAxesIndices = new int[RockAxes.Length];
-        //activeSlicesIndices = new int[Slices.Length];
-        for (int i = 0; i < ttButtons.Length; i++)
-        {
-            int buttonIndex = i;
-            ttButtons[i].onClick.AddListener(() => ttClick(buttonIndex));
-        }
-        for (int i = 0; i < ganButtons.Length; i++)
-        {
-            int buttonIndex = i;
-            ganButtons[i].onClick.AddListener(() => ganClick(buttonIndex));
-        }
+        gameManager = FindObjectOfType<Gamemanager>();
     }
-    public void ttClick(int buttonIndex)
+    public void stoneClick(int buttonIndex)
     {
-        gameManager.SetSelectedStone(ttEnumValues[buttonIndex]);
-        //int activeSliceIndex = activeSlicesIndices[buttonIndex];
-        if (activeImage != null)
+        if(currentImage != null)
         {
-            activeImage.gameObject.SetActive(false);
-            //SetActiveImage(RockAxes[buttonIndex], true);
-            // activeRockAxesIndices[buttonIndex] = buttonIndex;
+            currentImage.transform.gameObject.SetActive(false);
         }
-        /*else //if (Slices[buttonIndex].gameObject.activeSelf == true)
-        {
-            SetActiveImage(Slices[activeSliceIndex], false);
-            SetActiveImage(RockAxes[buttonIndex], true);
-            activeRockAxesIndices[buttonIndex] = buttonIndex;
-            // RockAxes[buttonIndex].gameObject.SetActive(true);
-        }*/
-        activeImage = RockAxes[buttonIndex];
-        activeImage.gameObject.SetActive(true);
-        //activeSlicesIndices[buttonIndex] = -1;
+        gameManager.SetSelectedStone(stoneEnumArr[buttonIndex]);
+        currentImage = activeImageArr[buttonIndex];
+        currentImage.transform.gameObject.SetActive(true);
     }
-    void ganClick(int buttonIndex)
-    {
-        gameManager.SetSelectedStone(ganEnumValues[buttonIndex]);
-        //int activeRockAxeIndex = activeRockAxesIndices[buttonIndex];
-        if (activeImage != null)
-        {
-            activeImage.gameObject.SetActive(false);
-            // SetActiveImage(Slices[buttonIndex], true);
-            //activeSlicesIndices[buttonIndex] = buttonIndex;
-        }
-        /*else //if (RockAxes[buttonIndex].gameObject.activeSelf== true)
-         {
-             SetActiveImage(RockAxes[activeRockAxeIndex], false);
-             SetActiveImage(Slices[buttonIndex], true);
-             activeSlicesIndices[buttonIndex] = buttonIndex;
-         }*/
-        activeImage = Slices[buttonIndex];
-        activeImage.gameObject.SetActive(true);
-        // activeRockAxesIndices[buttonIndex] = -1;
-    }
-    /*void SetActiveImage(Image image, bool isActive)
-    {
-        if (image != null)
-        {
-            image.gameObject.SetActive(isActive);
-        }
-    }*/
-    // Start is called before the first frame update
 
-
-    // Update is called once per frame
-    void Update()
+    public void makeclick()
     {
-        
+        if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki1)
+        {
+            backgroundArr[0].gameObject.SetActive(true);
+        }
+        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki2)
+        {
+            backgroundArr[1].gameObject.SetActive(true);
+        }
+        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki3)
+        {
+            backgroundArr[2].gameObject.SetActive(true);
+        }
+        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki1)
+        {
+            backgroundArr[3].gameObject.SetActive(true);
+        }
+        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki2)
+        {
+            backgroundArr[4].gameObject.SetActive(true);
+        }
+        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki3)
+        {
+            backgroundArr[5].gameObject.SetActive(true);
+        }
     }
 }

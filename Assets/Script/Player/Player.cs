@@ -16,8 +16,6 @@ public class Player : MonoBehaviour
     public GameObject inventory;
     public GameObject Canvas;
     public Button makebutton;
-    public GameObject Background1;
-    public GameObject Background2;
     public Button jumpbutton;
     public float jumpPower = 3f;
     public Gamemanager gameManager;
@@ -123,24 +121,24 @@ public class Player : MonoBehaviour
         rigid.velocity = Vector3.zero;
         speed = 0;
     }
-    public void makeclick()
-    {
-        Debug.Log(gameManager.GetSelectedStone());
-        if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.RockAxe99
-            || gameManager.GetSelectedStone() == Gamemanager.GameInstance.RockAxe2
-            || gameManager.GetSelectedStone() == Gamemanager.GameInstance.RockAxe3)
-        {
-            Background1.gameObject.SetActive(true);
-        }
-        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TTenSeokki1
-            || gameManager.GetSelectedStone() == Gamemanager.GameInstance.TTenSeokki2
-            || gameManager.GetSelectedStone() == Gamemanager.GameInstance.TTenSeokki3)
-        {
-            Debug.Log("1");
-            Background2.gameObject.SetActive(true);
-        }
+    //public void makeclick()
+    //{
+    //    Debug.Log(gameManager.GetSelectedStone());
+    //    if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.RockAxe99
+    //        || gameManager.GetSelectedStone() == Gamemanager.GameInstance.RockAxe2
+    //        || gameManager.GetSelectedStone() == Gamemanager.GameInstance.RockAxe3)
+    //    {
+    //        Background1.gameObject.SetActive(true);
+    //    }
+    //    else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TTenSeokki1
+    //        || gameManager.GetSelectedStone() == Gamemanager.GameInstance.TTenSeokki2
+    //        || gameManager.GetSelectedStone() == Gamemanager.GameInstance.TTenSeokki3)
+    //    {
+    //        Debug.Log("1");
+    //        Background2.gameObject.SetActive(true);
+    //    }
         
-    }
+    //}
 
 }
 
