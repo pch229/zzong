@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("inven"))
         {
             inventory.gameObject.SetActive(true);
-            Canvas.gameObject.SetActive(false);
+           // Canvas.gameObject.SetActive(false);
             isWalking = false;
             isIdle = true;
             StopMovement();
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("to"))
+        if (other.CompareTag("inven"))
         {
             isWalking = true;
             isIdle = false;
@@ -64,8 +64,8 @@ public class Player : MonoBehaviour
         inventory.gameObject.SetActive(false);
         Canvas.gameObject.SetActive(true);
         isWalking = true;
-        isIdle = true;
-
+        isIdle = false;
+        speed = 3f;
     }
 
 
@@ -115,8 +115,8 @@ public class Player : MonoBehaviour
     void StopMovement()
     {
         rigid.velocity = Vector3.zero;
-        speed = 0;
     }
+
     public void makeclick()
     {
         Background.gameObject.SetActive(true);

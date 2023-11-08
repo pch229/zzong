@@ -4,10 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SuccessButton : MonoBehaviour
+public class FailButton : MonoBehaviour
 {
-    public void OnClick()
+
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
