@@ -6,8 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class SuccessButton : MonoBehaviour
 {
+    public GameObject StudyUI;
+    public GameObject Success_Modal;
+    public GameObject TtenSeokgiUI;
+
+
+
     public void OnClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Success_Modal.SetActive(false);
+        TtenSeokgiUI.SetActive(false);
+        StudyUI.SetActive(true);
     }
 }
