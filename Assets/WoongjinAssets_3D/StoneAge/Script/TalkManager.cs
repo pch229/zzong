@@ -165,22 +165,13 @@ public class TalkManager : MonoBehaviour
             manager.Action(player.GetScanObject());
             Debug.Log("NextTalk()");
         
-        /*
-        //이게 문제인듯
-        if (manager.isAction)
-        {
-            // 퀘스트 체크를 먼저 수행
-            manager.Talk(manager.scanObject.GetComponent<ObjData>().id, manager.scanObject.GetComponent<ObjData>());
-            manager.questManager.CheckQuest(manager.scanObject.GetComponent<ObjData>().id);
-        }
-        */
     }
 
     void OutTalk()
     {
         talkPanel.SetActive(false);
         joyStick.gameObject.SetActive(true);
-        // manager.talkIndex = 0;
+        manager.talkIndex = 0;
     }
 
 }
