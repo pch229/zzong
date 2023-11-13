@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 369308499507176478}
+  m_Father: {fileID: 9102589858956323014}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1978218984711231493
@@ -113,7 +113,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 369308499507176478}
+  m_Father: {fileID: 9102589858956323014}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8342255800389491768
@@ -196,7 +196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 369308499507176478}
+  m_Father: {fileID: 9102589858956323014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2214535256146681967
@@ -257,8 +257,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 369308499507176478}
-  - component: {fileID: 349143414495457631}
+  - component: {fileID: 9102589858956323014}
   m_Layer: 0
   m_Name: Below_Stone
   m_TagString: Untagged
@@ -266,16 +265,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &369308499507176478
-RectTransform:
+--- !u!4 &9102589858956323014
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8437834283902202492}
   m_LocalRotation: {x: -0.0069791046, y: 0.00019002853, z: 0.01122838, w: 0.9999126}
-  m_LocalPosition: {x: 0, y: 0, z: 5.065}
-  m_LocalScale: {x: 17.94228, y: 17.942282, z: 17.942282}
+  m_LocalPosition: {x: 4.704, y: -0.195, z: 5.556}
+  m_LocalScale: {x: 25.178457, y: 25.178457, z: 25.178457}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6094483924560718534}
@@ -284,21 +283,3 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.8, y: 0.013, z: 1.287}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.247, y: -0.28}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!135 &349143414495457631
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8437834283902202492}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.00001
-  m_Center: {x: 0, y: 0, z: 0}
