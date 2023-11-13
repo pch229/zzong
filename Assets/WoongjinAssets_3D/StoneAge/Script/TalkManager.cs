@@ -22,7 +22,7 @@ public class TalkManager : MonoBehaviour
 
     void Awake()
     {
-        scanObject = GameObject.Find("Player").GetComponent<Player_keyboard>().scanObject;
+        scanObject = GameObject.Find("Player").GetComponent<Player>().scanObject;
         talkData = new Dictionary<int, string[]>();
         GenerateData();
         nextButton.onClick.AddListener(() => NextTalk());

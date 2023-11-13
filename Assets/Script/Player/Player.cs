@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameManager manager;
 
     public Button talkButton;
-    GameObject scanObject;
+    public GameObject scanObject;
     RaycastHit hit;
 
  
