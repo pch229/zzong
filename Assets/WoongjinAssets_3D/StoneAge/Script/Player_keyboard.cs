@@ -9,7 +9,7 @@ public class Player_keyboard : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
 
-    public GameManager manager;
+    public Gamemanager manager;
     public GameObject scanObject;
     public Button talkButton;
 
@@ -30,7 +30,7 @@ public class Player_keyboard : MonoBehaviour
     {
         if (scanObject != null)
         {
-            manager.Action(scanObject);
+            // manager.Action(scanObject);
         }
     }
     
@@ -39,7 +39,7 @@ public class Player_keyboard : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
         {
-            manager.Action(scanObject);
+            // manager.Action(scanObject);
             Debug.Log("manager.Action");
         }
         

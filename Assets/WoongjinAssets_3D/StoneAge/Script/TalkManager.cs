@@ -12,7 +12,7 @@ public class TalkManager : MonoBehaviour
 
     public Button nextButton;
     public Button outButton;
-    public GameManager manager;
+    public Gamemanager manager;
 
     public GameObject talkPanel;
     public GameObject joyStick;
@@ -162,7 +162,7 @@ public class TalkManager : MonoBehaviour
     void NextTalk()
     {
        
-            manager.Action(scanObject);
+            // manager.Action(scanObject);
             Debug.Log("NextTalk()");
         
         /*
@@ -180,7 +180,7 @@ public class TalkManager : MonoBehaviour
     {
         talkPanel.SetActive(false);
         joyStick.gameObject.SetActive(true);
-        manager.talkIndex = 0;
+        // manager.talkIndex = 0;
     }
 
 }
