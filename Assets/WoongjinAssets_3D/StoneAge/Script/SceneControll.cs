@@ -20,11 +20,6 @@ public class SceneControll : MonoBehaviour
         SceneManager.LoadScene("1_Cave");
     }
 
-    public void StudyUIStart()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

@@ -9,7 +9,7 @@ public class Player_keyboard : MonoBehaviour
 {
     public float moveSpeed = 1.0f;
 
-    public GameManager manager;
+    public Gamemanager manager;
     public GameObject scanObject;
     public Button talkButton;
 
@@ -30,7 +30,7 @@ public class Player_keyboard : MonoBehaviour
     {
         if (scanObject != null)
         {
-            manager.Action(scanObject);
+            // manager.Action(scanObject);
         }
     }
     
@@ -39,11 +39,11 @@ public class Player_keyboard : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
         {
-            manager.Action(scanObject);
+            // manager.Action(scanObject);
             Debug.Log("manager.Action");
         }
         
-        // °Å¸® Ã¼Å© ¹Ì¿Ï¼ºÀÌ¶ó ¿Ï¼ºÇØÁÖ¼¼¿é
+        // ï¿½Å¸ï¿½ Ã¼Å© ï¿½Ì¿Ï¼ï¿½ï¿½Ì¶ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½
         /*distance = Vector3.Distance(NPC.transform.position, transform.position);
 
         if (distance <= withNPCDistance)

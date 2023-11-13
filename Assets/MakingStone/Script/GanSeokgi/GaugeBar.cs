@@ -7,12 +7,12 @@ public class GaugeBar : MonoBehaviour
 
     Rigidbody2D rb2D;
     Coroutine successCoroutine = null;
-    GameManager gameManager;
+    MakingStoneManager makingStoneManager;
 
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        gameManager = FindObjectOfType<GameManager>();
+        makingStoneManager = FindObjectOfType<MakingStoneManager>();
     }
 
     IEnumerator SuccessCount()
@@ -20,8 +20,8 @@ public class GaugeBar : MonoBehaviour
         yield return new WaitForSeconds(7f);
         if (successCoroutine != null)
         {
-            gameManager.SetSuccessRate();
-            gameManager.SetGameResult(GameState.success);
+            makingStoneManager.SetSuccessRate();
+            makingStoneManager.SetGameResult(GameState.success);
         }
     }
 
@@ -34,7 +34,7 @@ public class GaugeBar : MonoBehaviour
         }
         else if (collision.gameObject.transform.name == "Gauge High Point")
         {
-            gameManager.SetGameResult(GameState.fail);
+            makingStoneManager.SetGameResult(GameState.fail);
             rb2D.velocity = new Vector2(0, 0);
         }
         else if (collision.gameObject.transform.name == "Gauge Success Point")

@@ -6,7 +6,7 @@ public class HittingCrossHair : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "1_Handaxe")
+        if (collision.gameObject.tag == "TtenSeokgi")
         {
             isOnTarget = true;
         }
@@ -14,7 +14,7 @@ public class HittingCrossHair : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "1_Handaxe")
+        if (collision.gameObject.tag == "TtenSeokgi")
         {
             isOnTarget = false;
         }

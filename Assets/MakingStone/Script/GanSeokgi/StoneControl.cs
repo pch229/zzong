@@ -3,7 +3,7 @@ using UnityEngine;
 public class StoneControl : MonoBehaviour
 {
     ParticleSystem grindingParticle;
-    GameManager gameManager;
+    MakingStoneManager makingStoneManager;
     GaugeBar gaugeBar;
 
     bool isClicked = false;
@@ -12,7 +12,7 @@ public class StoneControl : MonoBehaviour
     void Start()
     {
         grindingParticle = GetComponentInChildren<ParticleSystem>();
-        gameManager = FindObjectOfType<GameManager>();
+        makingStoneManager = FindObjectOfType<MakingStoneManager>();
         gaugeBar = FindObjectOfType<GaugeBar>();
     }
 
@@ -20,7 +20,7 @@ public class StoneControl : MonoBehaviour
     {
         if (isClicked) // 돌이 클릭되면
         {
-            if (gameManager.GetGameResult() == GameState.none)
+            if (makingStoneManager.GetGameResult() == GameState.none)
             {
                 ProcessGrinding();
             }
@@ -83,7 +83,7 @@ public class StoneControl : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (gameManager.GetGameResult() == GameState.none)
+        if (makingStoneManager.GetGameResult() == GameState.none)
         {
             float distance = Camera.main.WorldToScreenPoint(transform.position).z;
 

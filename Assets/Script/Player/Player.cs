@@ -8,25 +8,78 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public GameManager manager;
-
     public Button talkButton;
     public GameObject scanObject;
     RaycastHit hit;
 
- 
+
     public FixedJoystick joy;
     public float speed;
+    private bool isWalking = false;
+    private bool isIdle = false;
+    public GameObject inventory;
+    public GameObject Canvas;
+    public Button makebutton;
+    public Button jumpbutton;
+    public float jumpPower = 3f;
+    public Gamemanager gameManager;
+    bool isJumping = false;
+    //public Button jumpbutton;
 
     Rigidbody rigid;
     Animator anim;
     Vector3 moveVec;
+    //Vector3 camVec;
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody>();
+    }
+    public void Onclick()
+    {
+        if (!isJumping)
+        {
+            anim.SetTrigger("isJump");
+            rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("inven"))
+        {
+            inventory.gameObject.SetActive(true);
+            Canvas.gameObject.SetActive(false);
+            isWalking = false;
+            isIdle = true;
+            // StopMovement();
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("inven"))
+        {
+            isWalking = true;
+            isIdle = false;
+        }
+    }
+    public void makeClose()
+    {
+        inventory.gameObject.SetActive(false);
+        Canvas.gameObject.SetActive(true);
+        isWalking = true;
+        isIdle = true;
+    }
 
     void TalkStart()
     {
         if (scanObject != null)
         {
-            manager.Action(scanObject);
+            // manager.Action(scanObject);
         }
     }
 
@@ -74,9 +127,14 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        //anim.SetFloat("Move", moveVec.sqrMagnitude);
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isIdle", isIdle);
     }
-
+    void StopMovement()
+    {
+        rigid.velocity = Vector3.zero;
+        speed = 0;
+    }
 }
 
 
