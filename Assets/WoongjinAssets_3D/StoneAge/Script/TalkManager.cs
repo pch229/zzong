@@ -17,12 +17,12 @@ public class TalkManager : MonoBehaviour
     public GameObject talkPanel;
     public GameObject joyStick;
 
-    GameObject scanObject;
+    public Player player;
 
 
     void Awake()
     {
-        scanObject = GameObject.Find("Player").GetComponent<Player>().scanObject;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         talkData = new Dictionary<int, string[]>();
         GenerateData();
         nextButton.onClick.AddListener(() => NextTalk());
@@ -162,7 +162,7 @@ public class TalkManager : MonoBehaviour
     void NextTalk()
     {
        
-            // manager.Action(scanObject);
+            manager.Action(player.GetScanObject());
             Debug.Log("NextTalk()");
         
         /*

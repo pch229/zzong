@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public Button talkButton;
+    public Gamemanager manager;
     public GameObject scanObject;
-    RaycastHit hit;
+    public Button talkButton;
 
 
     public FixedJoystick joy;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
     Animator anim;
     Vector3 moveVec;
-    //Vector3 camVec;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
     {
         if (scanObject != null)
         {
-            // manager.Action(scanObject);
+            manager.Action(scanObject);
         }
     }
 
@@ -89,6 +89,14 @@ public class Player : MonoBehaviour
 
         rigid = GetComponent<Rigidbody>();
         //anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && scanObject != null)
+        {
+            manager.Action(scanObject);
+        }
     }
 
     void FixedUpdate()
@@ -134,6 +142,11 @@ public class Player : MonoBehaviour
     {
         rigid.velocity = Vector3.zero;
         speed = 0;
+    }
+
+    public GameObject GetScanObject()
+    {
+        return scanObject;
     }
 }
 

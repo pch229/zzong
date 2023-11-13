@@ -13,6 +13,7 @@ TagManager:
   - Gan
   - TT
   - GameManager
+  - NPC
   layers:
   - Default
   - TransparentFX
