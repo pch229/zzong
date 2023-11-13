@@ -9,8 +9,10 @@ TagManager:
   - GaugePoint
   - CaveEntrance
   - toForest
-  - TT
+  - TtenSeokgi
   - Gan
+  - TT
+  - GameManager
   layers:
   - Default
   - TransparentFX

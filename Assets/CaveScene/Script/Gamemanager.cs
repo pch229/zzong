@@ -18,7 +18,7 @@ public class Gamemanager : MonoBehaviour
 
     void Awake()
     {
-        int gameManagerCount = FindObjectsOfType<GameManager>().Length;
+        int gameManagerCount = FindObjectsOfType<Gamemanager>().Length;
 
         if (gameManagerCount > 1)
         {

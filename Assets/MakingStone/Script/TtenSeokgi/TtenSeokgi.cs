@@ -4,11 +4,11 @@ public class TtenSeokgi : MonoBehaviour
 {
     [SerializeField] int hp = 5;
 
-    GameManager gameManager;
+    MakingStoneManager makingStoneManager;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        makingStoneManager = FindObjectOfType<MakingStoneManager>();
     }
 
     // Update is called once per frame
@@ -23,8 +23,8 @@ public class TtenSeokgi : MonoBehaviour
 
         if (hp == 0)
         {
-            gameManager.SetSuccessRate();
-            gameManager.SetGameResult(GameState.success);
+            makingStoneManager.SetSuccessRate();
+            makingStoneManager.SetGameResult(GameState.success);
         }
     }
 }

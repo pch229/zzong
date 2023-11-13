@@ -7,19 +7,21 @@ public class HitButton : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
     RotateGauge rotateGauge;
     TtenSeokgi ttenSeokgi;
-    GameManager gameManager;
+    MakingStoneManager makingStoneManager;
     HittingCrossHair hittingCrossHair;
 
     private void Start()
     {
         rotateGauge = FindObjectOfType<RotateGauge>();
         ttenSeokgi = FindObjectOfType<TtenSeokgi>();
-        gameManager = FindObjectOfType<GameManager>();
+        makingStoneManager = FindObjectOfType<MakingStoneManager>();
         hittingCrossHair = FindObjectOfType<HittingCrossHair>();
+        hitPlayDir = FindObjectOfType<PlayableDirector>();
+        hitParticle = FindObjectOfType<ParticleSystem>();
     }
     public void OnClick()
     {
-        if (gameManager.GetGameResult() == GameState.none)
+        if (makingStoneManager.GetGameResult() == GameState.none)
         {
             if (hittingCrossHair.GetIsOnTarget())
             {
@@ -31,7 +33,7 @@ public class HitButton : MonoBehaviour
                 }
                 else if (rotateGauge.GetIsHitTiming() == HittingTimingState.FAIL_TIMING)
                 {
-                    gameManager.SetGameResult(GameState.fail);
+                    makingStoneManager.SetGameResult(GameState.fail);
                 }
             }
         }

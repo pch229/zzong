@@ -9,20 +9,32 @@ public enum GameState
     none
 }
 
-public class GameManager : MonoBehaviour
+public class MakingStoneManager : MonoBehaviour
 {
     [SerializeField] GameObject successModalObj;
     [SerializeField] GameObject failModalObj;
     [SerializeField] int successRate;
 
+    Gamemanager gameManager;
+    GameObject[] ttenSeokgiPool;
+    GameObject[] ganSeokgiArrPool;
+
+    public GameObject ttenSeokgiGroup;
+    public GameObject ganSeokgiGroup;
+
     GameState gameState = GameState.none;
     int rate = 0;
+
+    void Start()
+    {
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<Gamemanager>();
+    }
 
     void Update()
     {
         if (gameState == GameState.success)
         {
-            if(rate < (successRate / 10))
+            if (rate < (successRate / 10))
             {
                 successModalObj.SetActive(true);
             }
