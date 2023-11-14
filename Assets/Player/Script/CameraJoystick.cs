@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CameraJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] RectTransform lever;
     [SerializeField, Range(10f, 150f)] float leverRange = 30f;
-    [SerializeField] Transform player;
+    [SerializeField] Transform cameraTransform;
 
     TPSCharacterController tpsCharacterController;
     private Vector2 inputVector;
@@ -15,19 +15,19 @@ public class PlayerJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        tpsCharacterController = player.GetComponent<TPSCharacterController>();
+        tpsCharacterController = cameraTransform.GetComponentInParent<TPSCharacterController>();
     }
 
     void Update()
     {
         if (isInput)
         {
-            tpsCharacterController.Move(inputVector);
+            tpsCharacterController.LookAround(inputVector);
         }
         else
         {
             inputVector = Vector3.zero;
-            tpsCharacterController.Move(inputVector);
+            tpsCharacterController.LookAround(inputVector);
         }
     }
 
