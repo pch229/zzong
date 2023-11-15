@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterBody: {fileID: 5353282152535050858}
   cameraArm: {fileID: 5602500736028544279}
+  speed: 5
 --- !u!65 &5602500734451581954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -244,6 +245,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5394ccf811735461db427ac1b895a718, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825894089210680117, guid: 5394ccf811735461db427ac1b895a718, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5394ccf811735461db427ac1b895a718, type: 3}
