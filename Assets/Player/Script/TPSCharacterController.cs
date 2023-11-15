@@ -40,12 +40,12 @@ public class TPSCharacterController : MonoBehaviour
         if (animatorState.IsName("Picking Up"))
         {
             joyStick.SetActive(false);
+            isMove = false;
+            playerJoystick.ResetLeverPosition();
         }
         else
         {
-            playerJoystick.ResetLeverPosition();
             joyStick.SetActive(true);
-            isMove = false;
 
             if (!isMove && !isPickup)
             {
