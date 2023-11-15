@@ -31,6 +31,11 @@ public class PlayerJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         }
     }
 
+    public void ResetLeverPosition()
+    {
+        lever.transform.localPosition = Vector3.zero;
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         ControlJoystickLever(eventData);

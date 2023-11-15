@@ -1,4 +1,8 @@
+using OpenCover.Framework.Model;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TPSCharacterController : MonoBehaviour
 {
@@ -7,28 +11,65 @@ public class TPSCharacterController : MonoBehaviour
     [SerializeField] private float speed = 5f;
 
     Animator animator;
+    Rigidbody rigid;
+    bool isPickup;
+    bool isMove;
+    public float jumpPower = 3f;
+    public GameObject joyStick;
+    AnimatorStateInfo animatorState;
+    public PlayerJoystick playerJoystick;
+
 
     void Start()
     {
         animator = characterBody.GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody>();
+        isPickup = false;
     }
 
     void Update()
     {
-        // LookAround();
-        // Move();
+        animatorState = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (isPickup)
+        {
+            animator.SetTrigger("isPickUp");
+            isPickup = false;
+        }
+
+        if (animatorState.IsName("Picking Up"))
+        {
+            joyStick.SetActive(false);
+        }
+        else
+        {
+            playerJoystick.ResetLeverPosition();
+            joyStick.SetActive(true);
+            isMove = false;
+
+            if (!isMove && !isPickup)
+            {
+                animator.SetBool("isIdle", true);
+            }
+            else
+            {
+                animator.SetBool("isIdle", false);
+            }
+        }
     }
 
     public void Move(Vector3 moveVector)
     {
         // Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         // bool isMove = moveInput.magnitude != 0;
-
-        bool isMove = moveVector.magnitude != 0;
-        animator.SetBool("isMove", isMove);
+        
+        isMove = moveVector.magnitude != 0;
 
         if (isMove)
         {
+
+            animator.SetBool("isMove", true);
+            animator.SetBool("isIdle", false); 
             Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
             Vector3 lookRight = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
             // Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x;
@@ -37,7 +78,18 @@ public class TPSCharacterController : MonoBehaviour
             characterBody.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * speed;
         }
-        // Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized, Color.red);
+        else
+        {
+            animator.SetBool("isMove", false); 
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Branch")
+        {
+            isPickup = true;
+        }
     }
 
     public void LookAround(Vector3 moveVector)
@@ -58,5 +110,12 @@ public class TPSCharacterController : MonoBehaviour
 
         // cameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);
         cameraArm.rotation = Quaternion.Euler(x, camAngle.y + moveVector.x, camAngle.z);
+    }
+
+    public void Onclick()
+    {
+        animator.SetTrigger("isJump");
+        animator.SetBool("isIdle", false); 
+        rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
 }

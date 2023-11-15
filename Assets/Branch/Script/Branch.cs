@@ -12,7 +12,13 @@ public class Branch : MonoBehaviour
         {
             BranchCount++;
             Debug.Log("Branch count: " + BranchCount);
-            gameObject.SetActive(false);
+            StartCoroutine(DeactivateAfterSeconds(1.5f));
         }
+    }
+
+    IEnumerator DeactivateAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameObject.SetActive(false);
     }
 }
