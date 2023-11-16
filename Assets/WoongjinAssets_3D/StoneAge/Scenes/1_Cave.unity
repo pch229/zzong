@@ -16669,6 +16669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475acd8661712f7468422a51b3948e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  talkButton: {fileID: 0}
   joy: {fileID: 1250815111}
   speed: 3
   inventory: {fileID: 1838897838}
@@ -20048,7 +20049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1838897839
 RectTransform:
   m_ObjectHideFlags: 0
