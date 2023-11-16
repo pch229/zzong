@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
 {
     public GameObject[] backgroundArr = {};
     public Gamemanager gameManager;
+    public GameObject inventory;
     private Gamemanager.GameInstance[] stoneEnumArr = {
         Gamemanager.GameInstance.TtenSeokki1,
         Gamemanager.GameInstance.TtenSeokki2,
@@ -36,7 +37,35 @@ public class Inventory : MonoBehaviour
         currentImage = activeImageArr[buttonIndex];
         currentImage.transform.gameObject.SetActive(true);
     }
-
+   /* public void stoneClick2()
+    {
+        if(gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki1)
+        {
+            Debug.Log(123);
+            inventory.gameObject.SetActive(true);
+        }
+        else if(gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki2)
+        {
+            inventory.gameObject.SetActive(true);
+        }
+        else if(gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki3)
+        {
+            inventory.gameObject.SetActive(true);
+        }
+        else if(gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki1)
+        {
+            inventory.gameObject.SetActive(true);
+        }
+        else if(gameManager.GetSelectedStone() == Gamemanager.GameInstance .GanSeokki2)
+        {
+            inventory.gameObject.SetActive (true);
+        }
+        else if(gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki3)
+        {
+            inventory.gameObject.SetActive(true);
+        }
+    }
+   */
     public void makeclick()
     {
         if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki1)

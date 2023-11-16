@@ -1,11 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Gamemanager : MonoBehaviour
 {
+    public Button book1;
+    public Button book2;
+    public Button book3;
+    public GameObject Close1;
+    public GameObject Close2;
+    public GameObject Close3;
+    public GameObject MasterClose;
+    public GameObject CloseNotice;
+    public GameObject RecommendedBook;
+    public Image Complete1;
+    public Image Complete2;
+    public Image Complete3;
+    public Image NoticeScene;
+    public GameObject Scroll1;
+    public GameObject Scroll2;
+    public GameObject Scroll3;
+    //public GameObject[] Scrolls;
+    public ScrollRect scrollRect1;
+    public ScrollRect scrollRect2;
+    public ScrollRect scrollRect3;
+    public float scrollEndThreshold = 0.9f;
+    public GameObject inventory;
+    public GameObject inven6;
+        
+    private void OnEnable()
+    {
+        
+            // "On Value Changed" �̺�Ʈ�� �ݹ� �Լ� ����
+            scrollRect1.onValueChanged.AddListener(OnScrollValueChanged);
+            scrollRect2.onValueChanged.AddListener(OnScrollValueChanged);
+            scrollRect3.onValueChanged.AddListener(OnScrollValueChanged);
+        
+    
+        // "On Value Changed" �̺�Ʈ�� �ݹ� �Լ� ����
+       // scrollRect.onValueChanged.AddListener(OnScrollValueChanged);
+    }
+
+    private void OnDisable()
+    {
+        // ��ũ��Ʈ�� ��Ȱ��ȭ�� �� �̺�Ʈ ����
+        scrollRect1.onValueChanged.RemoveListener(OnScrollValueChanged);
+        scrollRect2.onValueChanged.RemoveListener(OnScrollValueChanged);
+        scrollRect3.onValueChanged.RemoveListener(OnScrollValueChanged);
+    }
+    public void OnScrollValueChanged(Vector2 value)
+    {
+        // ���� ��ũ�� ���� Ư�� �Ӱ谪 ���Ϸ� �������ٸ�
+        if (value.y <= 1 - scrollEndThreshold)
+        {
+            Debug.Log("911");
+            // ��ũ���� �������Ƿ� SetActive(false) ȣ��
+            //Close1.SetActive(true);
+        }
+    }
     public enum GameInstance
     {
         TtenSeokki1,
@@ -18,19 +72,24 @@ public class Gamemanager : MonoBehaviour
     }
     public GameInstance selectedStone;
 
-    public TalkManager talkManager;
-    public GameObject talkPanel;
-
-    public Text talkText;
-    public GameObject scanObject;
-    public bool isAction;
-    public int talkIndex;
-
-    public QuestManager questManager;
-    public GameObject player;
-
-    public Player playerObj;
-
+    private void Update()
+    {
+         float verticalScrollPosition1 = scrollRect1.verticalNormalizedPosition;
+         float verticalScrollPosition2 = scrollRect2.verticalNormalizedPosition;
+         float verticalScrollPosition3 = scrollRect3.verticalNormalizedPosition;
+         if (verticalScrollPosition1 <= 1 - scrollEndThreshold)
+         {
+             Close1.gameObject.SetActive(true);
+         }
+         if(verticalScrollPosition2 <= 1 - scrollEndThreshold)
+        {
+            Close2.gameObject.SetActive(true);
+        }
+         if(verticalScrollPosition3 <= 1 - scrollEndThreshold)
+        {
+            Close3.gameObject.SetActive(true);
+        }
+    }
     void Awake()
     {
         int gameManagerCount = FindObjectsOfType<Gamemanager>().Length;
@@ -128,5 +187,274 @@ public class Gamemanager : MonoBehaviour
         {
             currentQuestObj.SetNPCQuestState(NPCQuestState.SUCCESS_QUEST);
         }
+    }
+    public ItemScript itemScript;
+    public void ItemClick()
+    {
+        //inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 0; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 0 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void ItemClick2()
+    {
+        //inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 1; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 1 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI1();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void ItemClick3()
+    {
+       // inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 2; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 2 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI2();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void ItemClick4()
+    {
+        //inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 3; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 3 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI3();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void ItemClick5()
+    {
+       // inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 4; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 4 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI4();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void ItemClick6()
+    {
+        //inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 5; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 5 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI5();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void ItemClick7()
+    {
+        //inventory.gameObject.SetActive(true);
+        inven6.gameObject.SetActive(false);
+        if (itemScript != null)
+        {
+            Debug.Log(123);
+            // ItemScript���� ������ ����Ʈ ��������
+            var itemList = itemScript.GetItems();
+
+            // �������� quantity ������Ű��
+            int itemIndexToUpdate = 6; // ���� ���, ù ��° �������� quantity�� ������Ű�� �ʹٸ� index 0�� ����մϴ�.
+
+            if (itemIndexToUpdate >= 6 && itemIndexToUpdate < itemList.Count)
+            {
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+                itemList[itemIndexToUpdate].quantity++; // Ư�� �������� quantity�� 1 ������ŵ�ϴ�.
+            }
+            else
+            {
+                Debug.LogError("Invalid item index or itemList is empty!");
+            }
+
+            // UI ����
+            itemScript.UpdateUI6();
+        }
+        else
+        {
+            Debug.LogError("ItemScript�� �Ҵ���� �ʾҽ��ϴ�.");
+        }
+    }
+    public void BookClick3()
+    {
+        Scroll3.gameObject.SetActive(true);
+    }
+   public void BookClick2()
+    {
+        Scroll2.gameObject.SetActive(true);
+    }
+   public void BookClick1()
+    {
+        Scroll1.gameObject.SetActive(true);
+    }
+    public void CloseClick2()
+    {
+            NoticeScene.gameObject.SetActive(false);
+    }
+    public void CloseClick()
+    {
+        if (scrollRect1.gameObject.activeSelf == true && scrollRect2.gameObject.activeSelf == false && scrollRect3.gameObject.activeSelf == false)
+        {
+            scrollRect1.gameObject.SetActive(false);
+            Complete1.gameObject.SetActive(true);
+            inven6.gameObject.SetActive(true);
+        }
+        else if (scrollRect1.gameObject.activeSelf == false && scrollRect2.gameObject.activeSelf == true && scrollRect3.gameObject.activeSelf == false)
+        {
+            scrollRect2.gameObject.SetActive(false);
+            Complete2.gameObject.SetActive(true);
+            inven6.gameObject.SetActive(true);
+        }
+        else if(scrollRect1.gameObject.activeSelf == false && scrollRect2.gameObject.activeSelf == false && scrollRect3.gameObject.activeSelf == true)
+        {
+            scrollRect3.gameObject.SetActive(false);
+            Complete3.gameObject.SetActive(true);
+            inven6.gameObject.SetActive(true);
+        }
+        else if(Complete1.gameObject.activeSelf == true &&  Complete2.gameObject.activeSelf == true && Complete3.gameObject.activeSelf == true)
+        {
+            MasterClose.gameObject.SetActive(true);
+            RecommendedBook.gameObject.SetActive(false);
+            inven6.gameObject .SetActive(true);
+        }
+       
     }
 }

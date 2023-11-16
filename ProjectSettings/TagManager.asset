@@ -15,6 +15,13 @@ TagManager:
   - GameManager
   - NPC
   - Branch
+  - STONE1
+  - STON2
+  - STONE3
+  - STONE4
+  - STONE5
+  - STONE6
+  - BRNACH
   layers:
   - Default
   - TransparentFX
