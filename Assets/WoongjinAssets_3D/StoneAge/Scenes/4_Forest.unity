@@ -8997,6 +8997,17 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   makebutton: {fileID: 0}
   currentQuest: {fileID: 0}
+--- !u!114 &635574713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5602500734451581952, guid: 687151c1fdebe574eb92bb4a8786f87e, type: 3}
+  m_PrefabInstance: {fileID: 2123446799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635574705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872acab41878c93409e54d2883f0cfc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &636063244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20513,7 +20524,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 635574713}
         m_TargetAssemblyTypeName: TPSCharacterController, Assembly-CSharp
         m_MethodName: Onclick
         m_Mode: 1
@@ -30044,6 +30055,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5602500734857959712, guid: 687151c1fdebe574eb92bb4a8786f87e, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 63
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 687151c1fdebe574eb92bb4a8786f87e, type: 3}
 --- !u!1001 &2126752627
@@ -30341,7 +30356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4489511409949566810, guid: 14633868883de4541b818bec329ce4ff, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -71
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 4489511410810311593, guid: 14633868883de4541b818bec329ce4ff, type: 3}
       propertyPath: m_Pivot.x
@@ -30433,7 +30448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4489511410810311597, guid: 14633868883de4541b818bec329ce4ff, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Player_UI_Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14633868883de4541b818bec329ce4ff, type: 3}
