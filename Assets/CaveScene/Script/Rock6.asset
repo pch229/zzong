@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Rock6
   itemID: 6
   itemIcon: {fileID: 0}
-  quantity: 9
+  quantity: 0
