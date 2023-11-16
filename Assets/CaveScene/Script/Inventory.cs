@@ -13,19 +13,22 @@ public class Inventory : MonoBehaviour
     public GameObject[] backgroundArr = {};
     public Gamemanager gameManager;
     public GameObject inventory;
-    private Gamemanager.GameInstance[] stoneEnumArr = {
-        Gamemanager.GameInstance.TtenSeokki1,
-        Gamemanager.GameInstance.TtenSeokki2,
-        Gamemanager.GameInstance.TtenSeokki3,
-        Gamemanager.GameInstance.GanSeokki1,
-        Gamemanager.GameInstance.GanSeokki2,
-        Gamemanager.GameInstance.GanSeokki3,
+    private GameInstance[] stoneEnumArr = {
+        GameInstance.TtenSeokki1,
+        GameInstance.TtenSeokki2,
+        GameInstance.TtenSeokki3,
+        GameInstance.GanSeokki1,
+        GameInstance.GanSeokki2,
+        GameInstance.GanSeokki3,
     };
     public Image currentImage;
     public Image[] activeImageArr;
+    Player playerScript;
+
     void Start()
     {
         gameManager = FindObjectOfType<Gamemanager>();
+        playerScript = GameObject.FindWithTag("Player").GetComponent<Player>() ;
     }
     public void stoneClick(int buttonIndex)
     {
@@ -68,29 +71,36 @@ public class Inventory : MonoBehaviour
    */
     public void makeclick()
     {
-        if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki1)
+        if (gameManager.GetSelectedStone() == GameInstance.TtenSeokki1)
         {
             backgroundArr[0].gameObject.SetActive(true);
         }
-        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki2)
+        else if (gameManager.GetSelectedStone() == GameInstance.TtenSeokki2)
         {
             backgroundArr[1].gameObject.SetActive(true);
         }
-        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki3)
+        else if (gameManager.GetSelectedStone() == GameInstance.TtenSeokki3)
         {
             backgroundArr[2].gameObject.SetActive(true);
         }
-        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki1)
+        else if (gameManager.GetSelectedStone() == GameInstance.GanSeokki1)
         {
             backgroundArr[3].gameObject.SetActive(true);
         }
-        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki2)
+        else if (gameManager.GetSelectedStone() == GameInstance.GanSeokki2)
         {
             backgroundArr[4].gameObject.SetActive(true);
         }
-        else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki3)
+        else if (gameManager.GetSelectedStone() == GameInstance.GanSeokki3)
         {
             backgroundArr[5].gameObject.SetActive(true);
         }
+        gameObject.SetActive(false);
+    }
+
+    public void CloseInven()
+    {
+        gameObject.SetActive(false);
+        playerScript.SetIsPlayerMaking(false);
     }
 }

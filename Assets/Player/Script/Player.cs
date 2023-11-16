@@ -11,17 +11,19 @@ public class Player : MonoBehaviour
     public Gamemanager gameManager;
     public GameObject scanObject;
     public Button talkButton;
-    public GameObject inventory;
-    public GameObject Canvas;
     public Button makebutton;
 
     ObjData objData;
 
     public ObjData currentQuest;
+    public GameObject inventoryCanvas;
+
+    bool isMaking = false;
 
     void Awake()
     {
-        talkButton.onClick.AddListener(() => TalkStart());
+        // talkButton.onClick.AddListener(() => TalkStart());
+        inventoryCanvas = GameObject.FindWithTag("InvenSingleTon");
     }
 
     private void Update()
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
         else
         {
             scanObject = null;
-            talkButton.gameObject.SetActive(false);
+            // talkButton.gameObject.SetActive(false);
         }
     }
 
@@ -75,8 +77,19 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("inven"))
         {
-            inventory.gameObject.SetActive(true);
-            Canvas.gameObject.SetActive(false);
+            InvenCanvas inventoryCanvasObj = inventoryCanvas.GetComponent<InvenCanvas>();
+            inventoryCanvasObj.SetActiveInven(true);
+            isMaking = true;
         }
+    }
+
+    public void SetIsPlayerMaking(bool state)
+    {
+        isMaking = state;
+    }
+
+    public bool GetIsPlayerMaking()
+    {
+        return isMaking;
     }
 }

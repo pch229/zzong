@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StonePool : MonoBehaviour
 {
@@ -53,15 +54,15 @@ public class StonePool : MonoBehaviour
 
         for (int i = 0; i < uiPrefabs.Length; i++)
         {
-            if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki1
-                || gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki2
-                || gameManager.GetSelectedStone() == Gamemanager.GameInstance.TtenSeokki3)
+            if (gameManager.GetSelectedStone() == GameInstance.TtenSeokki1
+                || gameManager.GetSelectedStone() == GameInstance.TtenSeokki2
+                || gameManager.GetSelectedStone() == GameInstance.TtenSeokki3)
             {
                 uiPrefabs[0].SetActive(true);
             }
-            else if (gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki1
-                || gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki2
-                || gameManager.GetSelectedStone() == Gamemanager.GameInstance.GanSeokki3)
+            else if (gameManager.GetSelectedStone() == GameInstance.GanSeokki1
+                || gameManager.GetSelectedStone() == GameInstance.GanSeokki2
+                || gameManager.GetSelectedStone() == GameInstance.GanSeokki3)
             {
                 uiPrefabs[1].SetActive(true);
             }

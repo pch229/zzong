@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5602500734451581952}
   - component: {fileID: 5602500734451581954}
   - component: {fileID: 5602500734451581953}
+  - component: {fileID: 635574710}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,8 +82,27 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &635574710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602500734451581966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475acd8661712f7468422a51b3948e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  scanObject: {fileID: 0}
+  talkButton: {fileID: 0}
+  inventory: {fileID: 0}
+  Canvas: {fileID: 0}
+  makebutton: {fileID: 0}
+  currentQuest: {fileID: 0}
 --- !u!1 &5602500734857959725
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +167,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

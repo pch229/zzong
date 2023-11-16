@@ -4,6 +4,17 @@ using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameInstance
+{
+    TtenSeokki1,
+    TtenSeokki2,
+    TtenSeokki3,
+    GanSeokki1,
+    GanSeokki2,
+    GanSeokki3,
+    none,
+}
+
 public class Gamemanager : MonoBehaviour
 {
     public Button book1;
@@ -29,7 +40,19 @@ public class Gamemanager : MonoBehaviour
     public float scrollEndThreshold = 0.9f;
     public GameObject inventory;
     public GameObject inven6;
-        
+    public ItemScript itemScript;
+    public GameInstance selectedStone;
+
+    public GameObject talkPanel;
+    public bool isAction;
+    public TalkManager talkManager;
+    public int talkIndex;
+    public QuestManager questManager;
+    public Text talkText;
+    public Player playerObj;
+    public GameObject player;
+    public GameObject characterUICanvasObj;
+
     private void OnEnable()
     {
         
@@ -50,46 +73,7 @@ public class Gamemanager : MonoBehaviour
         scrollRect2.onValueChanged.RemoveListener(OnScrollValueChanged);
         scrollRect3.onValueChanged.RemoveListener(OnScrollValueChanged);
     }
-    public void OnScrollValueChanged(Vector2 value)
-    {
-        // ���� ��ũ�� ���� Ư�� �Ӱ谪 ���Ϸ� �������ٸ�
-        if (value.y <= 1 - scrollEndThreshold)
-        {
-            Debug.Log("911");
-            // ��ũ���� �������Ƿ� SetActive(false) ȣ��
-            //Close1.SetActive(true);
-        }
-    }
-    public enum GameInstance
-    {
-        TtenSeokki1,
-        TtenSeokki2,
-        TtenSeokki3,
-        GanSeokki1,
-        GanSeokki2,
-        GanSeokki3,
-        none,
-    }
-    public GameInstance selectedStone;
-
-    private void Update()
-    {
-         float verticalScrollPosition1 = scrollRect1.verticalNormalizedPosition;
-         float verticalScrollPosition2 = scrollRect2.verticalNormalizedPosition;
-         float verticalScrollPosition3 = scrollRect3.verticalNormalizedPosition;
-         if (verticalScrollPosition1 <= 1 - scrollEndThreshold)
-         {
-             Close1.gameObject.SetActive(true);
-         }
-         if(verticalScrollPosition2 <= 1 - scrollEndThreshold)
-        {
-            Close2.gameObject.SetActive(true);
-        }
-         if(verticalScrollPosition3 <= 1 - scrollEndThreshold)
-        {
-            Close3.gameObject.SetActive(true);
-        }
-    }
+    
     void Awake()
     {
         int gameManagerCount = FindObjectsOfType<Gamemanager>().Length;
@@ -110,6 +94,35 @@ public class Gamemanager : MonoBehaviour
     {
         selectedStone = GameInstance.none;
     }
+
+    private void Update()
+    {
+        if(playerObj.GetIsPlayerMaking() == true)
+        {
+            characterUICanvasObj.SetActive(false);
+        }
+        else
+        {
+            characterUICanvasObj.SetActive(true);
+        }
+
+        float verticalScrollPosition1 = scrollRect1.verticalNormalizedPosition;
+        float verticalScrollPosition2 = scrollRect2.verticalNormalizedPosition;
+        float verticalScrollPosition3 = scrollRect3.verticalNormalizedPosition;
+        if (verticalScrollPosition1 <= 1 - scrollEndThreshold)
+        {
+            Close1.gameObject.SetActive(true);
+        }
+        if (verticalScrollPosition2 <= 1 - scrollEndThreshold)
+        {
+            Close2.gameObject.SetActive(true);
+        }
+        if (verticalScrollPosition3 <= 1 - scrollEndThreshold)
+        {
+            Close3.gameObject.SetActive(true);
+        }
+    }
+
     public void SetSelectedStone(GameInstance stone)
     {
         selectedStone = stone;
@@ -188,7 +201,18 @@ public class Gamemanager : MonoBehaviour
             currentQuestObj.SetNPCQuestState(NPCQuestState.SUCCESS_QUEST);
         }
     }
-    public ItemScript itemScript;
+
+    public void OnScrollValueChanged(Vector2 value)
+    {
+        // ���� ��ũ�� ���� Ư�� �Ӱ谪 ���Ϸ� �������ٸ�
+        if (value.y <= 1 - scrollEndThreshold)
+        {
+            Debug.Log("911");
+            // ��ũ���� �������Ƿ� SetActive(false) ȣ��
+            //Close1.SetActive(true);
+        }
+    }
+
     public void ItemClick()
     {
         //inventory.gameObject.SetActive(true);
