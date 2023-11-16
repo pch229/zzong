@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,9 +25,11 @@ public class Gamemanager : MonoBehaviour
     public GameObject scanObject;
     public bool isAction;
     public int talkIndex;
-    public GameObject joyStick;
 
     public QuestManager questManager;
+    public GameObject player;
+
+    public Player playerObj;
 
     void Awake()
     {
@@ -40,6 +43,8 @@ public class Gamemanager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+
+        playerObj = player.GetComponent<Player>();
     }
 
     void Start()
@@ -59,21 +64,37 @@ public class Gamemanager : MonoBehaviour
     public void Action(GameObject scanObj)
 
     {
-        scanObject = scanObj;
-        ObjData objData = scanObject.GetComponent<ObjData>();
-        Talk(objData.id, objData.isNPC);
+        // scanObject = scanObj;
+        ObjData objData = scanObj.GetComponent<ObjData>();
+        Talk(objData.id, objData.isNPC, objData.GetNPCQuestState(), objData.GetCurrentQuest());
 
         talkPanel.SetActive(isAction);
-        joyStick.gameObject.SetActive(!isAction);
-        Debug.Log("Action()");
     }
 
-    public void Talk(int id, bool isNPC)
+    public void Talk(int id, bool isNPC, NPCQuestState state, int currentQuest)
     {
-        //Set Talk Data
-        int questTalkIndex = questManager.GetQuestTalkIndex(id);
-        //string talkData = talkManager.GetTalk(id, talkIndex);
-        string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
+        string talkData = "";
+
+        if (state == NPCQuestState.NONE)
+        {
+            talkData = talkManager.GetTalk(id, 0);
+        }
+        else if(state == NPCQuestState.HAVE_QUEST)
+        {
+            talkData = talkManager.GetTalk(id + (int)state + (10 * (currentQuest + 1)), talkIndex); // 1000 + 0 + 10 = 1010
+        }
+        else if (state == NPCQuestState.SUCCESS_QUEST)
+        {
+            talkData = talkManager.GetTalk(id + (int)state + (10 * (currentQuest + 1)), talkIndex); // 1000 + 0 + 10 = 1010
+        }
+        else if (state == NPCQuestState.PROCESS_QUEST)
+        {
+            talkData = talkManager.GetTalk(id, talkIndex);
+        }
+        ////Set Talk Data
+        //int questTalkIndex = questManager.GetQuestTalkIndex(id);
+        ////string talkData = talkManager.GetTalk(id, talkIndex);
+        //string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
 
         // End Talk
         if (talkData == null)
@@ -97,17 +118,24 @@ public class Gamemanager : MonoBehaviour
         }
         isAction = true;
         talkIndex++;
-        Debug.Log(talkIndex);
     }
-    /*
-    IEnumerator TypeSentence(string sentence)
+
+    public void SetSuccessArr()
     {
-        talkText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        ObjData currentQuestObj = playerObj.GetCurrentQuest();
+        currentQuestObj.SetSuccessArr(currentQuestObj.GetCurrentQuest(), true);
+
+        if (currentQuestObj.GetNPCQuestState() == NPCQuestState.PROCESS_QUEST)
         {
-            talkText.text += letter;
-            yield return new WaitForSeconds(0.15f);
+            if (talkManager.GetHasSuccessComment(currentQuestObj.GetNPCId() + (10 * (currentQuestObj.GetCurrentQuest() + 1))) == false)
+            {
+                currentQuestObj.SetNPCQuestState(NPCQuestState.HAVE_QUEST);
+                currentQuestObj.IncreaseCurrentQuest();
+            }
+            else
+            {
+                currentQuestObj.SetNPCQuestState(NPCQuestState.SUCCESS_QUEST);
+            }
         }
     }
-    */
 }
