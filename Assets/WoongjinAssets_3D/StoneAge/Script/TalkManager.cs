@@ -10,7 +10,6 @@ using UnityEngine.UI;
 public struct QuestDataStruct
 {
     public string[] questArr;
-    public bool hasSuccessComment;
 }
 
 public class TalkManager : MonoBehaviour
@@ -68,8 +67,8 @@ public class TalkManager : MonoBehaviour
         //                                        "웅진 : 그래! 학교에서 배운 내용을 더듬어보자.",
                                                 "웅진 : 이럴 줄 알았으면 수업시간에 선생님 말씀 좀 들을 걸..."
     };
-    string[] grandPaSecondHasQuest = new string[] {
-                    "웅진 : 저... 이정도면...",
+    string[] grandPaFirstSuccessQuest = new string[] {
+        "웅진 : 저... 이정도면...",
                     //                            "족장 : 오! 벌써 완성했나?",
                     //                            "족장 : 자네는 뭐든지 빠르구만!",
                     //                            "웅진 : 일단 보여주신거랑 최대한 비슷하게 해봤는데...",
@@ -94,6 +93,12 @@ public class TalkManager : MonoBehaviour
                     //                            "웅진 : 감사합니다.",
                     //                            "족장 : 음... 그래서 말인데",
                     //                            "웅진 : 그래서 말인데?",
+        "웅진 : 잠시 뒤에 말을 걸어줄래?"
+    };
+    string[] grandPaSecondHasQuest = new string[] {
+                    
+
+                    //                            "족장 : 음... 내가 곰곰히 생각해 봤는데",
                     //                            "족장 : 자네가 우리에게 필요한 석기를 만들어 줬으면 좋겠어.",
                     //                            "족장 : 무리의 일원으로 받아드리겠다는 말이지!",
                     //                            "웅진 : 아, 말씀은 감사합니다. 하지만 저는...",
@@ -296,7 +301,6 @@ public class TalkManager : MonoBehaviour
         // 족장
         QuestDataStruct grandPaProcessQuestData;
         grandPaProcessQuestData.questArr = grandPaProcessQuest;
-        grandPaProcessQuestData.hasSuccessComment = false;
 
         talkData.Add(1000, grandPaProcessQuestData);
 
@@ -336,49 +340,46 @@ public class TalkManager : MonoBehaviour
         // 퀘스트 번호 + NPC Id
         QuestDataStruct grandPaFirstHasQuestData;
         grandPaFirstHasQuestData.questArr = grandPaFirstHasQuest;
-        grandPaFirstHasQuestData.hasSuccessComment = false;
 
         talkData.Add(1010, grandPaFirstHasQuestData);
 
+        QuestDataStruct grandPaFirstSuccessQuestData;
+        grandPaFirstSuccessQuestData.questArr = grandPaFirstSuccessQuest;
+
+        talkData.Add(1011, grandPaFirstSuccessQuestData);
+
         QuestDataStruct grandPaSecondHasQuestData;
         grandPaSecondHasQuestData.questArr = grandPaSecondHasQuest;
-        grandPaSecondHasQuestData.hasSuccessComment = true;
 
         talkData.Add(1020, grandPaSecondHasQuestData);
 
         QuestDataStruct grandPaSecondSuccessQuestData;
         grandPaSecondSuccessQuestData.questArr = grandPaSecondSuccessQuest;
-        grandPaSecondSuccessQuestData.hasSuccessComment = false;
 
         talkData.Add(1021, grandPaSecondSuccessQuestData);
 
         QuestDataStruct grandPaThridHasQuestData;
         grandPaThridHasQuestData.questArr = grandPaThirdHasQuest;
-        grandPaThridHasQuestData.hasSuccessComment = true;
 
         talkData.Add(1030, grandPaThridHasQuestData);
 
         QuestDataStruct grandPaThridSuccessQuestData;
         grandPaThridSuccessQuestData.questArr = grandPaThirdSuccessQuest;
-        grandPaThridSuccessQuestData.hasSuccessComment = false;
 
         talkData.Add(1031, grandPaThridSuccessQuestData);
 
         QuestDataStruct grandPaForthHasQuestData;
         grandPaForthHasQuestData.questArr = grandPaForthHasQuest;
-        grandPaForthHasQuestData.hasSuccessComment = true;
 
         talkData.Add(1040, grandPaForthHasQuestData);
 
         QuestDataStruct grandPaForthSuccessQuestData;
         grandPaForthSuccessQuestData.questArr = grandPaForthSuccessQuest;
-        grandPaForthSuccessQuestData.hasSuccessComment = true;
 
         talkData.Add(1041, grandPaForthSuccessQuestData);
 
         QuestDataStruct grandPaFifthHasQuestData;
         grandPaFifthHasQuestData.questArr = grandPaFifthHasQuest;
-        grandPaFifthHasQuestData.hasSuccessComment = true;
 
         talkData.Add(1050, grandPaFifthHasQuestData);
 
@@ -421,19 +422,16 @@ public class TalkManager : MonoBehaviour
 
         QuestDataStruct grandPaFifthSuccessQuestData;
         grandPaFifthSuccessQuestData.questArr = grandPaFifthSuccessQuest;
-        grandPaFifthSuccessQuestData.hasSuccessComment = true;
 
         talkData.Add(1051, grandPaFifthSuccessQuestData);
 
         QuestDataStruct grandPaSixthHasQuestData;
         grandPaSixthHasQuestData.questArr = grandPaSixthHasQuest;
-        grandPaSixthHasQuestData.hasSuccessComment = true;
 
         talkData.Add(1060, grandPaSixthHasQuestData);
 
         QuestDataStruct grandPaSixthSuccessQuestData;
         grandPaSixthSuccessQuestData.questArr = grandPaSixthSuccessQuest;
-        grandPaSixthSuccessQuestData.hasSuccessComment = true;
 
         talkData.Add(1061, grandPaSixthSuccessQuestData);
 
@@ -466,11 +464,6 @@ public class TalkManager : MonoBehaviour
             return talkData[id].questArr[talkIndex];
     }
 
-    public bool GetHasSuccessComment(int id)
-    {
-        return talkData[id].hasSuccessComment;
-    }
-
     void NextTalk()
     {
         manager.Action(player.GetScanObject());
@@ -486,13 +479,13 @@ public class TalkManager : MonoBehaviour
         if (npcObj.GetNPCQuestState() == NPCQuestState.HAVE_QUEST)
         {
             player.SetCurrentQuest(npcObj);
-            npcObj.SetProcessingPlayer(player);
-
-            currentQuestText.text = npcObj.GetQuestTitle(npcObj.GetCurrentQuest());
+            // npcObj.SetProcessingPlayer(player);
             npcObj.SetNPCQuestState(NPCQuestState.PROCESS_QUEST);
+            npcObj.AddSuccessList();
         }
-        else if(npcObj.GetNPCQuestState() == NPCQuestState.SUCCESS_QUEST)
+        else if (npcObj.GetNPCQuestState() == NPCQuestState.SUCCESS_QUEST)
         {
+            currentQuestText.text = "";
             npcObj.IncreaseCurrentQuest();
             npcObj.SetNPCQuestState(NPCQuestState.HAVE_QUEST);
         }

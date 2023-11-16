@@ -62,11 +62,10 @@ public class Gamemanager : MonoBehaviour
     }
 
     public void Action(GameObject scanObj)
-
     {
         // scanObject = scanObj;
         ObjData objData = scanObj.GetComponent<ObjData>();
-        Talk(objData.id, objData.isNPC, objData.GetNPCQuestState(), objData.GetCurrentQuest());
+        Talk(objData.GetNPCId(), objData.GetIsNPC(), objData.GetNPCQuestState(), objData.GetCurrentQuest());
 
         talkPanel.SetActive(isAction);
     }
@@ -79,7 +78,7 @@ public class Gamemanager : MonoBehaviour
         {
             talkData = talkManager.GetTalk(id, 0);
         }
-        else if(state == NPCQuestState.HAVE_QUEST)
+        else if (state == NPCQuestState.HAVE_QUEST)
         {
             talkData = talkManager.GetTalk(id + (int)state + (10 * (currentQuest + 1)), talkIndex); // 1000 + 0 + 10 = 1010
         }
@@ -123,19 +122,11 @@ public class Gamemanager : MonoBehaviour
     public void SetSuccessArr()
     {
         ObjData currentQuestObj = playerObj.GetCurrentQuest();
-        currentQuestObj.SetSuccessArr(currentQuestObj.GetCurrentQuest(), true);
+        currentQuestObj.SetSuccessList(currentQuestObj.GetCurrentQuest(), true);
 
         if (currentQuestObj.GetNPCQuestState() == NPCQuestState.PROCESS_QUEST)
         {
-            if (talkManager.GetHasSuccessComment(currentQuestObj.GetNPCId() + (10 * (currentQuestObj.GetCurrentQuest() + 1))) == false)
-            {
-                currentQuestObj.SetNPCQuestState(NPCQuestState.HAVE_QUEST);
-                currentQuestObj.IncreaseCurrentQuest();
-            }
-            else
-            {
-                currentQuestObj.SetNPCQuestState(NPCQuestState.SUCCESS_QUEST);
-            }
+            currentQuestObj.SetNPCQuestState(NPCQuestState.SUCCESS_QUEST);
         }
     }
 }
