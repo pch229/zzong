@@ -7,16 +7,16 @@ public class InvenCanvas : MonoBehaviour
     [SerializeField] private GameObject inventory;
     void Awake()
     {
-        int invenCount = GameObject.FindGameObjectsWithTag("InvenSingleTon").Length;
+        //int invenCount = GameObject.FindGameObjectsWithTag("InvenSingleTon").Length;
 
-        if (invenCount > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        //if (invenCount > 1)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //else
+        //{
+        //    DontDestroyOnLoad(gameObject);
+        //}
     }
 
     public void SetActiveInven(bool isActive)
