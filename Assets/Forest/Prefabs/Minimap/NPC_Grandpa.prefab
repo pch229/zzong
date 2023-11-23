@@ -102,8 +102,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3843284786930897451}
   - component: {fileID: 3843284786923387983}
-  - component: {fileID: 6926946199055809595}
   - component: {fileID: 6926946199055809596}
+  - component: {fileID: 6926946199055809595}
   m_Layer: 3
   m_Name: NPC_Grandpa
   m_TagString: NPC
@@ -150,6 +150,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &6926946199055809596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843284786930667019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1.8, z: 0.8}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &6926946199055809595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,22 +177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1000
   isNPC: 1
-  successList: 
-  npcQuestState: 3
-  currentQuest: 0
---- !u!65 &6926946199055809596
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3843284786930667019}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.8, z: 0.8}
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &3843284786930667021
 GameObject:
   m_ObjectHideFlags: 0

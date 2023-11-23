@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 6823592970395115415}
   - component: {fileID: 4055152051328230057}
   - component: {fileID: 8488800690647368201}
+  - component: {fileID: 5980416155074293980}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -641,7 +642,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5980416155074293980}
         m_TargetAssemblyTypeName: SuccessButton, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -653,6 +654,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5980416155074293980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687300471181283727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588b1db465b01af4ca5a209db8ceb1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7908040131909266398
 GameObject:
   m_ObjectHideFlags: 0

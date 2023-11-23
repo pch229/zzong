@@ -1,7 +1,8 @@
-using OpenCover.Framework.Model;
-using UnityEditor.Animations;
+//using OpenCover.Framework.Model;
+//using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TPSCharacterController : MonoBehaviour
@@ -19,12 +20,21 @@ public class TPSCharacterController : MonoBehaviour
     AnimatorStateInfo animatorState;
     public PlayerJoystick playerJoystick;
 
+    public GameObject scanObject;
+    public Button talkButton;
+    public Gamemanager manager;
+
 
     void Start()
     {
         animator = characterBody.GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
         isPickup = false;
+    }
+
+    private void Awake()
+    {
+        talkButton.onClick.AddListener(() => TalkStart());
     }
 
     void Update()
@@ -56,6 +66,35 @@ public class TPSCharacterController : MonoBehaviour
                 animator.SetBool("isIdle", false);
             }
         }
+    }
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position, transform.forward, Color.yellow);
+        RaycastHit rayHit;
+
+        if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
+        {
+            Debug.Log(scanObject);
+            if (rayHit.collider.tag == "NPC")
+            {
+                scanObject = rayHit.collider.gameObject;
+                talkButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                scanObject = null;
+                talkButton.gameObject.SetActive(false);
+            }
+        }
+    }
+    void TalkStart()
+    {
+        manager.Action(scanObject);
+    }
+
+    public GameObject GetScanObject()
+    {
+        return scanObject;
     }
 
     public void Move(Vector3 moveVector)
@@ -89,6 +128,12 @@ public class TPSCharacterController : MonoBehaviour
         if (collision.gameObject.tag == "Branch")
         {
             isPickup = true;
+        }
+        
+        if (collision.gameObject.tag == "Entrance")
+        {
+            Debug.Log("MiniGame");
+            SceneManager.LoadScene("MiniGame");
         }
     }
 

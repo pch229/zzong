@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class SceneControll : MonoBehaviour
 {
+    public GameObject opCinematic;
+    public VideoPlayer videoPlayer;
+
+    private void Start()
+    {
+        videoPlayer.loopPointReached += OnVideoPlaybackComplete;
+    }
+    private void OnVideoPlaybackComplete(VideoPlayer vp)
+    {
+        // 비디오 재생이 완료되면 호출됩니다.
+        // 다음 씬으로 전환합니다.
+        SceneManager.LoadScene("1_Cave");
+    }
     public void InGameChanger()
     {
-        SceneManager.LoadScene("4_Forest");      
+        opCinematic.SetActive(true);
+        //SceneManager.LoadScene("4_Forest");      
     }
 
     public void WorkingSceneChanger()
@@ -35,17 +50,4 @@ public class SceneControll : MonoBehaviour
     }
 
 
-
-
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

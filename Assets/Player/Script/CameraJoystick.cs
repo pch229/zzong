@@ -46,8 +46,6 @@ public class CameraJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         var inputDir = eventData.position - rectTransform.anchoredPosition;
 
-        inputDir.x -= Screen.width;
-
         var clampedDir = inputDir.magnitude < leverRange ? inputDir
             : inputDir.normalized * leverRange;
 
