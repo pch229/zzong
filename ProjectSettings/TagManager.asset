@@ -23,6 +23,9 @@ TagManager:
   - STONE6
   - BRNACH
   - InvenSingleTon
+  - Portal
+  - CharacterUI
+  - TalkManager
   layers:
   - Default
   - TransparentFX

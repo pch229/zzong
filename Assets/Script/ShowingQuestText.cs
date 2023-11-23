@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class ShowingQuestText : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    GameObject player;
 
     Player playerObj;
     TextMeshProUGUI textMeshProUGUI;
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         playerObj = player.GetComponent<Player>();
         textMeshProUGUI = gameObject.GetComponent<TextMeshProUGUI>();
     }

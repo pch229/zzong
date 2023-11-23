@@ -1,19 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public Gamemanager gameManager;
+    public TalkManager talkManager;
     public GameObject scanObject;
-    public Button talkButton;
     public Button makebutton;
-
-    ObjData objData;
 
     public ObjData currentQuest;
     public GameObject inventoryCanvas;
@@ -23,31 +16,30 @@ public class Player : MonoBehaviour
     void Awake()
     {
         // talkButton.onClick.AddListener(() => TalkStart());
+        talkManager = GameObject.FindWithTag("TalkManager").GetComponent<TalkManager>();
         inventoryCanvas = GameObject.FindWithTag("InvenSingleTon");
-    }
-
-    private void Update()
-    {
     }
 
     void FixedUpdate()
     {
-        RaycastHit rayHit;
+        //RaycastHit rayHit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
-        {
-            if (rayHit.collider.tag == "NPC")
-            {
-                scanObject = rayHit.collider.gameObject;
-                objData = scanObject.GetComponent<ObjData>();
-                talkButton.gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            scanObject = null;
-            // talkButton.gameObject.SetActive(false);
-        }
+        //if (Physics.Raycast(transform.position, transform.forward, out rayHit, 0.7f))
+        //{
+        //    if (rayHit.collider.tag == "NPC")
+        //    {
+        //        scanObject = rayHit.collider.gameObject;
+        //        objData = scanObject.GetComponent<ObjData>();
+        //        talkButtonObj.gameObject.SetActive(true);
+        //    }
+        //}
+        //else
+        //{
+        //    scanObject = null;
+
+        //    if(talkButtonObj != null)
+        //        talkButtonObj.gameObject.SetActive(false);
+        //}
     }
 
     public void SetCurrentQuest(ObjData obj)
@@ -60,12 +52,17 @@ public class Player : MonoBehaviour
         return currentQuest;
     }
 
-    void TalkStart()
+    public void TalkStart()
     {
         if (scanObject != null)
         {
-            gameManager.Action(scanObject);
+            talkManager.Action(scanObject);
         }
+    }
+
+    public void SetScanObject(GameObject npc)
+    {
+        scanObject = npc;
     }
 
     public GameObject GetScanObject()
@@ -80,6 +77,20 @@ public class Player : MonoBehaviour
             InvenCanvas inventoryCanvasObj = inventoryCanvas.GetComponent<InvenCanvas>();
             inventoryCanvasObj.SetActiveInven(true);
             isMaking = true;
+        }
+        else if(other.CompareTag("Portal"))
+        {
+            SceneManager.LoadScene("4_Forest");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("inven"))
+        {
+            InvenCanvas inventoryCanvasObj = inventoryCanvas.GetComponent<InvenCanvas>();
+            inventoryCanvasObj.SetActiveInven(false);
+            isMaking = false;
         }
     }
 

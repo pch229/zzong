@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,59 @@ public class ObjData : MonoBehaviour
     [SerializeField] List<bool> successList;
 
     public NPCQuestState npcQuestState = NPCQuestState.NONE;
-    int currentQuest;
+    public int currentQuest;
+    GameObject processingPlayer;
+    GameObject talkManagerObj;
+
+    TalkManager talkManagerScript;
 
     private void Awake()
     {
+        talkManagerObj = GameObject.FindWithTag("TalkManager");
+        talkManagerScript = talkManagerObj.GetComponent<TalkManager>();
         currentQuest = 0;
+    }
+
+    void FixedUpdate()
+    {
+        //RaycastHit rayHit;
+
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z), transform.forward, Color.red);
+        //if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z), transform.forward, out rayHit, 10f))
+        //{
+        //    if (rayHit.collider.tag == "Player")
+        //    {
+        //        Debug.Log("µé¾î¿È");
+        //        Player playerScript = rayHit.collider.gameObject.GetComponent<Player>();
+        //        playerScript.SetScanObject(gameObject);
+        //        playerScript.SetCurrentQuest(gameObject.GetComponent<ObjData>());
+        //        talkManagerScript.ToggleTalkButton(true);
+        //    }
+        //}
+        //else
+        //{
+        //    talkManagerScript.ToggleTalkButton(false);
+        //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            Player playerScript = other.GetComponent<Player>();
+            playerScript.SetScanObject(gameObject);
+            talkManagerScript.ToggleTalkButton(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Player playerScript = other.GetComponent<Player>();
+            playerScript.SetScanObject(null);
+            talkManagerScript.ToggleTalkButton(false);
+        }
     }
 
     public int GetNPCId()
@@ -59,8 +108,18 @@ public class ObjData : MonoBehaviour
         successList.Add(false);
     }
 
-    public void SetSuccessList(int index, bool value)
+    public void SetProcessingPlayer(GameObject player)
     {
-        successList[index] = value;
+        processingPlayer = player;
+    }
+
+    public void SetSuccessArr()
+    {
+        successList[currentQuest] = true;
+
+        if (npcQuestState == NPCQuestState.PROCESS_QUEST)
+        {
+            npcQuestState = NPCQuestState.SUCCESS_QUEST;
+        }
     }
 }
