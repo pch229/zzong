@@ -24,7 +24,8 @@ public class TalkManager : MonoBehaviour
     public Text talkText;
     public TextMeshProUGUI currentQuestText;
 
-    public Player player;
+    GameObject player;
+    Player playerScript;
     public int talkIndex;
 
     GameObject questUIObj;
@@ -290,9 +291,10 @@ public class TalkManager : MonoBehaviour
 
     void Awake()
     {
+        player = GameObject.FindWithTag("Player");
         questUIObj = GameObject.Find("QuestUI");
         talkButtonObj = questUIObj.transform.Find("TalkButton");
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        playerScript = player.GetComponent<Player>();
         talkData = new Dictionary<int, QuestDataStruct>();
         GenerateData();
         nextButton.onClick.AddListener(() => NextTalk());
@@ -463,9 +465,15 @@ public class TalkManager : MonoBehaviour
 
         // 마지막 대화에서 다음 버튼 안 보이게
         if (talkIndex == talkData[id].questArr.Length - 1)
+        {
             nextButton.gameObject.SetActive(false);
+            outButton.gameObject.SetActive(true);
+        }
         else
+        {
             nextButton.gameObject.SetActive(true);
+            outButton.gameObject.SetActive(false);
+        }
 
 
         if (talkIndex == talkData[id].questArr.Length)
@@ -476,7 +484,7 @@ public class TalkManager : MonoBehaviour
 
     void NextTalk()
     {
-        Action(player.GetScanObject());
+        Action(playerScript.GetScanObject());
     }
 
     void OutTalk()
@@ -484,11 +492,11 @@ public class TalkManager : MonoBehaviour
         ObjData npcObj;
 
         talkPanel.SetActive(false);
-        npcObj = player.GetScanObject().GetComponent<ObjData>();
+        npcObj = playerScript.GetScanObject().GetComponent<ObjData>();
 
         if (npcObj.GetNPCQuestState() == NPCQuestState.HAVE_QUEST)
         {
-            player.SetCurrentQuest(npcObj);
+            playerScript.SetCurrentQuest(npcObj);
             npcObj.SetProcessingPlayer(player.gameObject);
             npcObj.SetNPCQuestState(NPCQuestState.PROCESS_QUEST);
             npcObj.AddSuccessList();
@@ -500,6 +508,14 @@ public class TalkManager : MonoBehaviour
             npcObj.SetNPCQuestState(NPCQuestState.HAVE_QUEST);
         }
         talkIndex = 0;
+    }
+
+    public void TalkStart()
+    {
+        if (playerScript.GetScanObject())
+        {
+            Action(playerScript.GetScanObject());
+        }
     }
 
     public void Action(GameObject scanObj)

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public TalkManager talkManager;
+    //public TalkManager talkManager;
     public GameObject scanObject;
     public Button makebutton;
 
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         // talkButton.onClick.AddListener(() => TalkStart());
-        talkManager = GameObject.FindWithTag("TalkManager").GetComponent<TalkManager>();
+        //talkManager = GameObject.FindWithTag("TalkManager").GetComponent<TalkManager>();
         inventoryCanvas = GameObject.FindWithTag("InvenSingleTon");
     }
 
@@ -52,13 +52,13 @@ public class Player : MonoBehaviour
         return currentQuest;
     }
 
-    public void TalkStart()
-    {
-        if (scanObject != null)
-        {
-            talkManager.Action(scanObject);
-        }
-    }
+    //public void TalkStart()
+    //{
+    //    if (scanObject != null)
+    //    {
+    //        talkManager.Action(scanObject);
+    //    }
+    //}
 
     public void SetScanObject(GameObject npc)
     {
