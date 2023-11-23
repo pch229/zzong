@@ -35,9 +35,9 @@ public class Gamemanager : MonoBehaviour
     public GameObject Scroll2;
     public GameObject Scroll3;
     //public GameObject[] Scrolls;
-    public ScrollRect scrollRect1;
-    public ScrollRect scrollRect2;
-    public ScrollRect scrollRect3;
+    //public ScrollRect scrollRect1;
+    //public ScrollRect scrollRect2;
+    //public ScrollRect scrollRect3;
     public float scrollEndThreshold = 0.9f;
     public GameObject inventory;
     public GameObject inven6;
@@ -56,9 +56,9 @@ public class Gamemanager : MonoBehaviour
     {
         
             // "On Value Changed" �̺�Ʈ�� �ݹ� �Լ� ����
-            scrollRect1.onValueChanged.AddListener(OnScrollValueChanged);
-            scrollRect2.onValueChanged.AddListener(OnScrollValueChanged);
-            scrollRect3.onValueChanged.AddListener(OnScrollValueChanged);
+            //scrollRect1.onValueChanged.AddListener(OnScrollValueChanged);
+            //scrollRect2.onValueChanged.AddListener(OnScrollValueChanged);
+            //scrollRect3.onValueChanged.AddListener(OnScrollValueChanged);
         
     
         // "On Value Changed" �̺�Ʈ�� �ݹ� �Լ� ����
@@ -68,9 +68,9 @@ public class Gamemanager : MonoBehaviour
     private void OnDisable()
     {
         // ��ũ��Ʈ�� ��Ȱ��ȭ�� �� �̺�Ʈ ����
-        scrollRect1.onValueChanged.RemoveListener(OnScrollValueChanged);
-        scrollRect2.onValueChanged.RemoveListener(OnScrollValueChanged);
-        scrollRect3.onValueChanged.RemoveListener(OnScrollValueChanged);
+        //scrollRect1.onValueChanged.RemoveListener(OnScrollValueChanged);
+        //scrollRect2.onValueChanged.RemoveListener(OnScrollValueChanged);
+        //scrollRect3.onValueChanged.RemoveListener(OnScrollValueChanged);
     }
     
     void Awake()
@@ -94,21 +94,21 @@ public class Gamemanager : MonoBehaviour
 
     private void Update()
     {
-        float verticalScrollPosition1 = scrollRect1.verticalNormalizedPosition;
-        float verticalScrollPosition2 = scrollRect2.verticalNormalizedPosition;
-        float verticalScrollPosition3 = scrollRect3.verticalNormalizedPosition;
-        if (verticalScrollPosition1 <= 1 - scrollEndThreshold)
-        {
-            Close1.gameObject.SetActive(true);
-        }
-        if (verticalScrollPosition2 <= 1 - scrollEndThreshold)
-        {
-            Close2.gameObject.SetActive(true);
-        }
-        if (verticalScrollPosition3 <= 1 - scrollEndThreshold)
-        {
-            Close3.gameObject.SetActive(true);
-        }
+        //float verticalScrollPosition1 = scrollRect1.verticalNormalizedPosition;
+        //float verticalScrollPosition2 = scrollRect2.verticalNormalizedPosition;
+        //float verticalScrollPosition3 = scrollRect3.verticalNormalizedPosition;
+        //if (verticalScrollPosition1 <= 1 - scrollEndThreshold)
+        //{
+        //    Close1.gameObject.SetActive(true);
+        //}
+        //if (verticalScrollPosition2 <= 1 - scrollEndThreshold)
+        //{
+        //    Close2.gameObject.SetActive(true);
+        //}
+        //if (verticalScrollPosition3 <= 1 - scrollEndThreshold)
+        //{
+        //    Close3.gameObject.SetActive(true);
+        //}
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -448,30 +448,30 @@ public class Gamemanager : MonoBehaviour
     }
     public void CloseClick()
     {
-        if (scrollRect1.gameObject.activeSelf == true && scrollRect2.gameObject.activeSelf == false && scrollRect3.gameObject.activeSelf == false)
-        {
-            scrollRect1.gameObject.SetActive(false);
-            Complete1.gameObject.SetActive(true);
-            inven6.gameObject.SetActive(true);
-        }
-        else if (scrollRect1.gameObject.activeSelf == false && scrollRect2.gameObject.activeSelf == true && scrollRect3.gameObject.activeSelf == false)
-        {
-            scrollRect2.gameObject.SetActive(false);
-            Complete2.gameObject.SetActive(true);
-            inven6.gameObject.SetActive(true);
-        }
-        else if(scrollRect1.gameObject.activeSelf == false && scrollRect2.gameObject.activeSelf == false && scrollRect3.gameObject.activeSelf == true)
-        {
-            scrollRect3.gameObject.SetActive(false);
-            Complete3.gameObject.SetActive(true);
-            inven6.gameObject.SetActive(true);
-        }
-        else if(Complete1.gameObject.activeSelf == true &&  Complete2.gameObject.activeSelf == true && Complete3.gameObject.activeSelf == true)
-        {
-            MasterClose.gameObject.SetActive(true);
-            RecommendedBook.gameObject.SetActive(false);
-            inven6.gameObject .SetActive(true);
-        }
+        //if (scrollRect1.gameObject.activeSelf == true && scrollRect2.gameObject.activeSelf == false && scrollRect3.gameObject.activeSelf == false)
+        //{
+        //    scrollRect1.gameObject.SetActive(false);
+        //    Complete1.gameObject.SetActive(true);
+        //    inven6.gameObject.SetActive(true);
+        //}
+        //else if (scrollRect1.gameObject.activeSelf == false && scrollRect2.gameObject.activeSelf == true && scrollRect3.gameObject.activeSelf == false)
+        //{
+        //    scrollRect2.gameObject.SetActive(false);
+        //    Complete2.gameObject.SetActive(true);
+        //    inven6.gameObject.SetActive(true);
+        //}
+        //else if(scrollRect1.gameObject.activeSelf == false && scrollRect2.gameObject.activeSelf == false && scrollRect3.gameObject.activeSelf == true)
+        //{
+        //    scrollRect3.gameObject.SetActive(false);
+        //    Complete3.gameObject.SetActive(true);
+        //    inven6.gameObject.SetActive(true);
+        //}
+        //else if(Complete1.gameObject.activeSelf == true &&  Complete2.gameObject.activeSelf == true && Complete3.gameObject.activeSelf == true)
+        //{
+        //    MasterClose.gameObject.SetActive(true);
+        //    RecommendedBook.gameObject.SetActive(false);
+        //    inven6.gameObject .SetActive(true);
+        //}
        
     }
 }
