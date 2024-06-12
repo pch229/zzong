@@ -21,7 +21,7 @@
     </td>
 <table>
   <tr>
-    <td align="center">
+    <td align="left">
       <a href="https://github.com/pch229">
         <img src="https://github.com/pch229.png" width="150px;" alt="찬혁"/>
         <br />
@@ -30,7 +30,7 @@
     </td>
 <table>
   <tr>
-    <td align="center">
+    <td align="right">
       <a href="https://github.com/seohyunisthebest">
         <img src="https://github.com/seohyunisthebest.png" width="150px;" alt="서현"/>
         <br />
