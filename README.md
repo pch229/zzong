@@ -19,7 +19,6 @@
         <sub><b> 👑김나희 </b><br>🙋‍♂️ 팀장,기획,관리자</sub>
       </a>
     </td>
-    
 <table>
   <tr>
     <td align="center">
@@ -29,7 +28,6 @@
         <sub><b> 박찬혁 </b><br>🙋‍♂️ 인벤토리,카메라,유저움직임 담당</sub>
       </a>
     </td>
-    
 <table>
   <tr>
     <td align="center">
@@ -39,7 +37,6 @@
         <sub><b> 이서현 </b><br>🙋‍♂️ 미니게임 개발, 영상편집, 기획, 스토리, 퀘스트 담당</sub>
       </a>
     </td>
-    
 <table>
   <tr>
     <td align="center">
@@ -49,7 +46,6 @@
         <sub><b> 최정훈 </b><br>🙋‍♂️ 인벤토리,카메라,유저움직임,싱글톤 담당</sub>
       </a>
     </td>
-    
 <table>
   <tr>
     <td align="center">
