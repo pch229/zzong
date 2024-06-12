@@ -50,7 +50,7 @@
   </tr>
 </table>
 </details>
-## 최우수상 수상 ##
+## 최우수상 수상 
 <p align="left">
-  <img src=https://github.com/pch229/zzong/assets/"C:\Users\BIG3-07\Downloads\aa3c34ef\f810c2f2_1.png" width = "630px">
+  ![최우수팀]("C:\Users\BIG3-07\Downloads\aa3c34ef\f810c2f2_1.png")
 
