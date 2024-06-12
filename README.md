@@ -4,7 +4,7 @@
 <img alt="csharp" src ="https://img.shields.io/badge/csharp-512BD4.svg?&style=for-the-badge&logo=csharp&logoColor=white"/>
 <img alt="visualstudio" src ="https://img.shields.io/badge/visualstudio-5C2D91.svg?&style=for-the-badge&logo=visualstudio&logoColor=white"/>
 <img alt="openai" src ="https://img.shields.io/badge/openaio-412991.svg?&style=for-the-badge&logo=openai&logoColor=white"/>
-## **🤍 소개**
+## 🎤멤버 소개**
 
 <details>
 <summary> <b>👨‍👨‍👧‍👦 Team Member</b></summary><br>
