@@ -52,5 +52,5 @@
 </details>
 ## 최우수상 수상 
 <p align="left">
-  ![최우수팀]("C:\Users\BIG3-07\Downloads\aa3c34ef\f810c2f2_1.png")
+  ![최우수팀]("C:/Users/BIG3-07/Downloads/aa3c34ef/f810c2f2_1.png")
 
