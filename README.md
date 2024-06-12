@@ -52,5 +52,5 @@
 </details>
 ## 최우수상 수상 ##
 <p align="left">
-  <img src=https://github.com/sunny7319/Hands_MediaPipe_project/assets/112309620/b554d8c6-7b6c-4d5a-9b91-c6f864487d60 width = "630px">
+  <img src=https://github.com/pch229/zzong/assets/"C:\Users\BIG3-07\Downloads\aa3c34ef\f810c2f2_1.png" width = "630px">
 
